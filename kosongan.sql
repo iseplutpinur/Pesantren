@@ -3,30 +3,36 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 09, 2021 at 05:24 PM
+-- Generation Time: Apr 10, 2021 at 01:45 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
+SET
+  SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET time_zone = "+00:00";
 
+SET
+  time_zone = "+00:00";
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */
+;
+
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */
+;
+
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */
+;
+
+/*!40101 SET NAMES utf8mb4 */
+;
 
 --
 -- Database: `kosongan`
 --
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `ijin`
 --
-
 CREATE TABLE `ijin` (
   `id` int(11) NOT NULL,
   `id_santri` int(11) NOT NULL,
@@ -34,34 +40,36 @@ CREATE TABLE `ijin` (
   `tanggal_selesai` date NOT NULL,
   `keterangan` varchar(200) NOT NULL,
   `status` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `level`
 --
-
 CREATE TABLE `level` (
   `lev_id` int(11) NOT NULL,
   `lev_nama` varchar(50) NOT NULL,
   `lev_keterangan` text NOT NULL,
   `lev_status` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
 --
 -- Dumping data for table `level`
 --
-
-INSERT INTO `level` (`lev_id`, `lev_nama`, `lev_keterangan`, `lev_status`) VALUES
-(2, 'Administrator', '-', 'Aktif');
+INSERT INTO
+  `level` (
+    `lev_id`,
+    `lev_nama`,
+    `lev_keterangan`,
+    `lev_status`
+  )
+VALUES
+  (2, 'Administrator', '-', 'Aktif');
 
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `menu`
 --
-
 CREATE TABLE `menu` (
   `menu_id` int(11) NOT NULL,
   `menu_menu_id` int(11) NOT NULL,
@@ -71,30 +79,128 @@ CREATE TABLE `menu` (
   `menu_icon` varchar(50) NOT NULL,
   `menu_url` varchar(100) NOT NULL,
   `menu_status` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
 --
 -- Dumping data for table `menu`
 --
-
-INSERT INTO `menu` (`menu_id`, `menu_menu_id`, `menu_nama`, `menu_keterangan`, `menu_index`, `menu_icon`, `menu_url`, `menu_status`) VALUES
-(1, 0, 'Dashboard', '-', 1, 'fa fa-suitcase', 'dashboard', 'Aktif'),
-(2, 0, 'Pengaturan', '-', 10, 'fa fa-cogs', '#', 'Aktif'),
-(3, 2, 'Hak Akses', '-', 1, 'fa fa-caret-right', 'pengaturan/hakAkses', 'Aktif'),
-(4, 2, 'Menu', '-', 2, 'fa fa-caret-right', 'pengaturan/menu', 'Aktif'),
-(5, 2, 'Level', '-', 3, 'fa fa-caret-right', 'pengaturan/level', 'Aktif'),
-(6, 2, 'Pengguna', '-', 4, 'fa fa-caret-right', 'pengaturan/pengguna', 'Aktif'),
-(15, 0, 'Santri', 'menu santri', 1, 'fa fa-user', '#', 'Aktif'),
-(16, 0, 'Data Perizinan', 'Data perizinan santri', 3, 'fa fa-envelope', '#', 'Aktif'),
-(17, 15, 'Santri', 'Data Santri', 0, 'fa fa-caret-right', 'santri/santri', 'Aktif'),
-(18, 15, 'kelas', 'dfgg', 1, 'fa fa-caret-right', '#', 'Aktif');
+INSERT INTO
+  `menu` (
+    `menu_id`,
+    `menu_menu_id`,
+    `menu_nama`,
+    `menu_keterangan`,
+    `menu_index`,
+    `menu_icon`,
+    `menu_url`,
+    `menu_status`
+  )
+VALUES
+  (
+    1,
+    0,
+    'Dashboard',
+    '-',
+    1,
+    'fa fa-suitcase',
+    'dashboard',
+    'Aktif'
+  ),
+  (
+    2,
+    0,
+    'Pengaturan',
+    '-',
+    10,
+    'fa fa-cogs',
+    '#',
+    'Aktif'
+  ),
+  (
+    3,
+    2,
+    'Hak Akses',
+    '-',
+    1,
+    'fa fa-caret-right',
+    'pengaturan/hakAkses',
+    'Aktif'
+  ),
+  (
+    4,
+    2,
+    'Menu',
+    '-',
+    2,
+    'fa fa-caret-right',
+    'pengaturan/menu',
+    'Aktif'
+  ),
+  (
+    5,
+    2,
+    'Level',
+    '-',
+    3,
+    'fa fa-caret-right',
+    'pengaturan/level',
+    'Aktif'
+  ),
+  (
+    6,
+    2,
+    'Pengguna',
+    '-',
+    4,
+    'fa fa-caret-right',
+    'pengaturan/pengguna',
+    'Aktif'
+  ),
+  (
+    15,
+    0,
+    'Santri',
+    'menu santri',
+    1,
+    'fa fa-user',
+    '#',
+    'Aktif'
+  ),
+  (
+    16,
+    0,
+    'Data Perizinan',
+    'Data perizinan santri',
+    3,
+    'fa fa-envelope',
+    '#',
+    'Aktif'
+  ),
+  (
+    17,
+    15,
+    'Santri',
+    'Data Santri',
+    0,
+    'fa fa-caret-right',
+    'santri/santri',
+    'Aktif'
+  ),
+  (
+    18,
+    15,
+    'Kelas',
+    'Kelas santri',
+    1,
+    'fa fa-caret-right',
+    'santri/kelas',
+    'Aktif'
+  );
 
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `pengaturan`
 --
-
 CREATE TABLE `pengaturan` (
   `id` int(30) NOT NULL,
   `logo` varchar(200) NOT NULL,
@@ -103,62 +209,58 @@ CREATE TABLE `pengaturan` (
   `deskripsi` varchar(250) NOT NULL,
   `batas_ijin` varchar(20) NOT NULL,
   `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `role_aplikasi`
 --
-
 CREATE TABLE `role_aplikasi` (
   `rola_id` int(11) NOT NULL,
   `rola_menu_id` int(11) NOT NULL,
   `rola_lev_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
 --
 -- Dumping data for table `role_aplikasi`
 --
-
-INSERT INTO `role_aplikasi` (`rola_id`, `rola_menu_id`, `rola_lev_id`) VALUES
-(2, 1, 2),
-(4, 3, 2),
-(5, 4, 2),
-(6, 5, 2),
-(7, 6, 2),
-(8, 2, 2),
-(17, 15, 2),
-(18, 16, 2),
-(19, 18, 2),
-(20, 17, 2);
+INSERT INTO
+  `role_aplikasi` (`rola_id`, `rola_menu_id`, `rola_lev_id`)
+VALUES
+  (2, 1, 2),
+  (4, 3, 2),
+  (5, 4, 2),
+  (6, 5, 2),
+  (7, 6, 2),
+  (8, 2, 2),
+  (17, 15, 2),
+  (18, 16, 2),
+  (19, 18, 2),
+  (20, 17, 2);
 
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `role_users`
 --
-
 CREATE TABLE `role_users` (
   `role_id` int(11) NOT NULL,
   `role_user_id` int(11) NOT NULL,
   `role_lev_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
 --
 -- Dumping data for table `role_users`
 --
-
-INSERT INTO `role_users` (`role_id`, `role_user_id`, `role_lev_id`) VALUES
-(1, 1, 2),
-(2, 2, 1);
+INSERT INTO
+  `role_users` (`role_id`, `role_user_id`, `role_lev_id`)
+VALUES
+  (1, 1, 2),
+  (2, 2, 1);
 
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `santri`
 --
-
 CREATE TABLE `santri` (
   `id_santri` int(11) NOT NULL,
   `tingkat_id` int(11) DEFAULT NULL,
@@ -166,104 +268,139 @@ CREATE TABLE `santri` (
   `ruang_id` int(11) DEFAULT NULL,
   `tahun_ajaran_id` int(11) DEFAULT NULL,
   `nama` varchar(50) NOT NULL,
-  `jenis_kelamin` enum('laki-laki','perempuan') NOT NULL,
+  `jenis_kelamin` enum('laki-laki', 'perempuan') NOT NULL,
   `alamat` varchar(250) NOT NULL,
   `no_hp` int(14) NOT NULL,
   `status` varchar(100) NOT NULL,
   `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `tanggal_lahir` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
 --
 -- Dumping data for table `santri`
 --
-
-INSERT INTO `santri` (`id_santri`, `tingkat_id`, `kelas_id`, `ruang_id`, `tahun_ajaran_id`, `nama`, `jenis_kelamin`, `alamat`, `no_hp`, `status`, `tanggal`, `tanggal_lahir`) VALUES
-(1, 1, 1, 1, 1, 'aa', 'laki-laki', 'where', 343434, 'kawin', '2021-04-09 11:57:12', NULL),
-(2, 1, 2, 2, 1, 'varchar', 'laki-laki', 'wkwkkw', 2323, 'dfafsdf', '2021-04-09 12:40:26', NULL);
+INSERT INTO
+  `santri` (
+    `id_santri`,
+    `tingkat_id`,
+    `kelas_id`,
+    `ruang_id`,
+    `tahun_ajaran_id`,
+    `nama`,
+    `jenis_kelamin`,
+    `alamat`,
+    `no_hp`,
+    `status`,
+    `tanggal`,
+    `tanggal_lahir`
+  )
+VALUES
+  (
+    1,
+    1,
+    1,
+    1,
+    1,
+    'aa',
+    'laki-laki',
+    'where',
+    343434,
+    'kawin',
+    '2021-04-09 11:57:12',
+    NULL
+  );
 
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `santri_kelas`
 --
-
 CREATE TABLE `santri_kelas` (
   `id` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
 --
 -- Dumping data for table `santri_kelas`
 --
-
-INSERT INTO `santri_kelas` (`id`, `nama`) VALUES
-(1, 'Tahfiz'),
-(2, 'Kaligrafi');
+INSERT INTO
+  `santri_kelas` (`id`, `nama`)
+VALUES
+  (23, '123'),
+  (22, '1231111111111111111'),
+  (20, '12333'),
+  (21, '12345'),
+  (18, '123sdsa'),
+  (17, 'asdasd'),
+  (16, 'Bulog'),
+  (11, 'cvzxvzcxv'),
+  (14, 'dsdfds'),
+  (6, 'fdgdfg'),
+  (4, 'fdgfdsg'),
+  (5, 'fdsggdsg'),
+  (3, 'fsgfdg'),
+  (2, 'Kaligrafi'),
+  (19, 'sd'),
+  (1, 'Tahfiz'),
+  (9, 'xczxcxzcZ');
 
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `santri_ruang`
 --
-
 CREATE TABLE `santri_ruang` (
   `id` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
 --
 -- Dumping data for table `santri_ruang`
 --
-
-INSERT INTO `santri_ruang` (`id`, `nama`) VALUES
-(1, 'Kaligrafi'),
-(2, 'Tahfiz');
+INSERT INTO
+  `santri_ruang` (`id`, `nama`)
+VALUES
+  (1, 'Kaligrafi'),
+  (2, 'Tahfiz');
 
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `santri_tahun_ajaran`
 --
-
 CREATE TABLE `santri_tahun_ajaran` (
   `id` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
 --
 -- Dumping data for table `santri_tahun_ajaran`
 --
-
-INSERT INTO `santri_tahun_ajaran` (`id`, `nama`) VALUES
-(1, '2021/2022'),
-(2, '2022/2023');
+INSERT INTO
+  `santri_tahun_ajaran` (`id`, `nama`)
+VALUES
+  (1, '2021/2022'),
+  (2, '2022/2023');
 
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `santri_tingkat`
 --
-
 CREATE TABLE `santri_tingkat` (
   `id` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
 --
 -- Dumping data for table `santri_tingkat`
 --
-
-INSERT INTO `santri_tingkat` (`id`, `nama`) VALUES
-(1, 'A'),
-(2, 'B');
+INSERT INTO
+  `santri_tingkat` (`id`, `nama`)
+VALUES
+  (1, 'A'),
+  (2, 'B');
 
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `users`
 --
-
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
   `user_nama` varchar(50) NOT NULL,
@@ -271,174 +408,277 @@ CREATE TABLE `users` (
   `user_email` varchar(50) NOT NULL,
   `user_phone` varchar(15) NOT NULL,
   `user_status` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
 --
 -- Dumping data for table `users`
 --
-
-INSERT INTO `users` (`user_id`, `user_nama`, `user_password`, `user_email`, `user_phone`, `user_status`) VALUES
-(1, 'Administrator', 'utqQiS/p4vWKh3E81QVNBONFqJt14hRtvAx446gYROkV8.8kh11eS', 'administrator', '08123123', 'Aktif'),
-(2, 'Petugas TU', 'amPXcdHeGkuISXLhkffApu7xo6AwRIr8KoWb6xPc9F9ASBaoyiIZi', 'petugas1', '08123123', 'Aktif');
+INSERT INTO
+  `users` (
+    `user_id`,
+    `user_nama`,
+    `user_password`,
+    `user_email`,
+    `user_phone`,
+    `user_status`
+  )
+VALUES
+  (
+    1,
+    'Administrator',
+    'utqQiS/p4vWKh3E81QVNBONFqJt14hRtvAx446gYROkV8.8kh11eS',
+    'administrator',
+    '08123123',
+    'Aktif'
+  ),
+  (
+    2,
+    'Petugas TU',
+    'amPXcdHeGkuISXLhkffApu7xo6AwRIr8KoWb6xPc9F9ASBaoyiIZi',
+    'petugas1',
+    '08123123',
+    'Aktif'
+  );
 
 --
 -- Indexes for dumped tables
 --
-
 --
 -- Indexes for table `ijin`
 --
-ALTER TABLE `ijin`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE
+  `ijin`
+ADD
+  PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `level`
 --
-ALTER TABLE `level`
-  ADD PRIMARY KEY (`lev_id`);
+ALTER TABLE
+  `level`
+ADD
+  PRIMARY KEY (`lev_id`);
 
 --
 -- Indexes for table `menu`
 --
-ALTER TABLE `menu`
-  ADD PRIMARY KEY (`menu_id`);
+ALTER TABLE
+  `menu`
+ADD
+  PRIMARY KEY (`menu_id`);
 
 --
 -- Indexes for table `pengaturan`
 --
-ALTER TABLE `pengaturan`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE
+  `pengaturan`
+ADD
+  PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `role_aplikasi`
 --
-ALTER TABLE `role_aplikasi`
-  ADD PRIMARY KEY (`rola_id`);
+ALTER TABLE
+  `role_aplikasi`
+ADD
+  PRIMARY KEY (`rola_id`);
 
 --
 -- Indexes for table `role_users`
 --
-ALTER TABLE `role_users`
-  ADD PRIMARY KEY (`role_id`);
+ALTER TABLE
+  `role_users`
+ADD
+  PRIMARY KEY (`role_id`);
 
 --
 -- Indexes for table `santri`
 --
-ALTER TABLE `santri`
-  ADD PRIMARY KEY (`id_santri`),
-  ADD KEY `kelas_id` (`kelas_id`),
-  ADD KEY `ruang_id` (`ruang_id`),
-  ADD KEY `tingkat_id` (`tingkat_id`),
-  ADD KEY `tahun_ajaran_id` (`tahun_ajaran_id`);
+ALTER TABLE
+  `santri`
+ADD
+  PRIMARY KEY (`id_santri`),
+ADD
+  KEY `kelas_id` (`kelas_id`),
+ADD
+  KEY `ruang_id` (`ruang_id`),
+ADD
+  KEY `tingkat_id` (`tingkat_id`),
+ADD
+  KEY `tahun_ajaran_id` (`tahun_ajaran_id`);
 
 --
 -- Indexes for table `santri_kelas`
 --
-ALTER TABLE `santri_kelas`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE
+  `santri_kelas`
+ADD
+  PRIMARY KEY (`id`),
+ADD
+  UNIQUE KEY `nama` (`nama`);
 
 --
 -- Indexes for table `santri_ruang`
 --
-ALTER TABLE `santri_ruang`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE
+  `santri_ruang`
+ADD
+  PRIMARY KEY (`id`),
+ADD
+  UNIQUE KEY `nama` (`nama`);
 
 --
 -- Indexes for table `santri_tahun_ajaran`
 --
-ALTER TABLE `santri_tahun_ajaran`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE
+  `santri_tahun_ajaran`
+ADD
+  PRIMARY KEY (`id`),
+ADD
+  UNIQUE KEY `nama` (`nama`);
 
 --
 -- Indexes for table `santri_tingkat`
 --
-ALTER TABLE `santri_tingkat`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE
+  `santri_tingkat`
+ADD
+  PRIMARY KEY (`id`),
+ADD
+  UNIQUE KEY `nama` (`nama`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
 --
 -- AUTO_INCREMENT for table `ijin`
 --
-ALTER TABLE `ijin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE
+  `ijin`
+MODIFY
+  `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `level`
 --
-ALTER TABLE `level`
-  MODIFY `lev_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE
+  `level`
+MODIFY
+  `lev_id` int(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 4;
 
 --
 -- AUTO_INCREMENT for table `menu`
 --
-ALTER TABLE `menu`
-  MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+ALTER TABLE
+  `menu`
+MODIFY
+  `menu_id` int(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 20;
 
 --
 -- AUTO_INCREMENT for table `pengaturan`
 --
-ALTER TABLE `pengaturan`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT;
+ALTER TABLE
+  `pengaturan`
+MODIFY
+  `id` int(30) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `role_aplikasi`
 --
-ALTER TABLE `role_aplikasi`
-  MODIFY `rola_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+ALTER TABLE
+  `role_aplikasi`
+MODIFY
+  `rola_id` int(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 21;
 
 --
 -- AUTO_INCREMENT for table `role_users`
 --
-ALTER TABLE `role_users`
-  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE
+  `role_users`
+MODIFY
+  `role_id` int(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 5;
 
 --
 -- AUTO_INCREMENT for table `santri`
 --
-ALTER TABLE `santri`
-  MODIFY `id_santri` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE
+  `santri`
+MODIFY
+  `id_santri` int(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 3;
 
 --
 -- AUTO_INCREMENT for table `santri_kelas`
 --
-ALTER TABLE `santri_kelas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE
+  `santri_kelas`
+MODIFY
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 25;
 
 --
 -- AUTO_INCREMENT for table `santri_ruang`
 --
-ALTER TABLE `santri_ruang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE
+  `santri_ruang`
+MODIFY
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 3;
 
 --
 -- AUTO_INCREMENT for table `santri_tahun_ajaran`
 --
-ALTER TABLE `santri_tahun_ajaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE
+  `santri_tahun_ajaran`
+MODIFY
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 3;
 
 --
 -- AUTO_INCREMENT for table `santri_tingkat`
 --
-ALTER TABLE `santri_tingkat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE
+  `santri_tingkat`
+MODIFY
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 3;
 
 --
 -- Constraints for dumped tables
 --
-
 --
 -- Constraints for table `santri`
 --
-ALTER TABLE `santri`
-  ADD CONSTRAINT `santri_ibfk_1` FOREIGN KEY (`kelas_id`) REFERENCES `santri_kelas` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `santri_ibfk_2` FOREIGN KEY (`ruang_id`) REFERENCES `santri_ruang` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `santri_ibfk_3` FOREIGN KEY (`tingkat_id`) REFERENCES `santri_tingkat` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `santri_ibfk_4` FOREIGN KEY (`tahun_ajaran_id`) REFERENCES `santri_tahun_ajaran` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE
+  `santri`
+ADD
+  CONSTRAINT `santri_ibfk_1` FOREIGN KEY (`kelas_id`) REFERENCES `santri_kelas` (`id`) ON DELETE
+SET
+  NULL ON UPDATE CASCADE,
+ADD
+  CONSTRAINT `santri_ibfk_2` FOREIGN KEY (`ruang_id`) REFERENCES `santri_ruang` (`id`) ON DELETE
+SET
+  NULL ON UPDATE CASCADE,
+ADD
+  CONSTRAINT `santri_ibfk_3` FOREIGN KEY (`tingkat_id`) REFERENCES `santri_tingkat` (`id`) ON DELETE
+SET
+  NULL ON UPDATE CASCADE,
+ADD
+  CONSTRAINT `santri_ibfk_4` FOREIGN KEY (`tahun_ajaran_id`) REFERENCES `santri_tahun_ajaran` (`id`) ON DELETE
+SET
+  NULL ON UPDATE CASCADE;
+
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */
+;
+
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */
+;
+
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */
+;

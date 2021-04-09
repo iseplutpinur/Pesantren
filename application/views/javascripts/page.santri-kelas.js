@@ -11,8 +11,8 @@ $(() => {
         let row = [
             data.nama,
             `
-            <div>
-            <button class="btn btn-primary btn-sm"  id="btn-ubah-${data.id}" data-toggle="modal" data-target="#modalUbah" data-id="${data.id}" data-nama="${data.nama}" onclick="Ubah(this)">
+            <div id="btn-ubah-${data.id}">
+            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalUbah" data-id="${data.id}" data-nama="${data.nama}" onclick="Ubah(this)">
                 <i class="fa fa-edit"></i> Ubah
             </button>
             <button class="btn btn-danger btn-sm" onclick="Hapus(${data.id})">
@@ -33,7 +33,16 @@ $(() => {
         $($table.row(row).node()).attr('data-id', id);
         $table.cell(row, 0).data(data.nama);
         let btn = $(`#btn-ubah-${data.id}`);
-        btn.data('nama', data.nama);
+        btn.html(`
+        <div id="btn-ubah-${data.id}">
+        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalUbah" data-id="${data.id}" data-nama="${data.nama}" onclick="Ubah(this)">
+            <i class="fa fa-edit"></i> Ubah
+        </button>
+        <button class="btn btn-danger btn-sm" onclick="Hapus(${data.id})">
+            <i class="fa fa-trash"></i> Hapus
+        </button>
+        </div>
+        `);
     }
 
     // Delete Row
@@ -54,7 +63,7 @@ $(() => {
 
             })
             .fail(($xhr) => {
-                $.failMessage('Gagal ditambahkan.', 'Santri Kelas')
+                $.failMessage('Gagal ditambahkan. data mungkin sudah ada.', 'Santri Kelas')
             }).
             always(() => {
                 $('#modalTambah').modal('toggle')
@@ -76,7 +85,7 @@ $(() => {
 
             })
             .fail(($xhr) => {
-                $.failMessage('Gagal diubah.', 'Santri Santri')
+                $.failMessage('Gagal diubah. data mungkin sudah ada.', 'Santri Santri')
             }).
             always(() => {
                 $('#modalUbah').modal('toggle')
@@ -127,8 +136,7 @@ const Hapus = (id) => {
 }
 
 // Click Ubah
-const Ubah = (id) => {
-    let data = $(id);
-    $("#id-ubah").val(data.data('id'));
-    $("#nama-ubah").val(data.data('nama'));
+const Ubah = (data) => {
+    $("#id-ubah").val(data.dataset.id);
+    $("#nama-ubah").val(data.dataset.nama);
 }

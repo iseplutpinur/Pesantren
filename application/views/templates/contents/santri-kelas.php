@@ -71,8 +71,8 @@
                                         <tr data-id="<?= $q['id'] ?>">
                                             <td><?= $q['nama'] ?></td>
                                             <td>
-                                                <div>
-                                                    <button class="btn btn-primary btn-sm" id="btn-ubah-<?= $q['id'] ?>" data-toggle="modal" data-target="#modalUbah" data-id="<?= $q['id'] ?>" data-nama="<?= $q['nama'] ?>" onclick="Ubah(this)">
+                                                <div id="btn-ubah-<?= $q['id'] ?>">
+                                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalUbah" data-id="<?= $q['id'] ?>" data-nama="<?= $q['nama'] ?>" onclick="Ubah(this)">
                                                         <i class="fa fa-edit"></i> Ubah
                                                     </button>
                                                     <button class="btn btn-danger btn-sm" onclick="Hapus(<?= $q['id'] ?>)">
