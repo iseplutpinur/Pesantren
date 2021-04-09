@@ -411,7 +411,39 @@ $(() => {
 					}
 				})
 			},
-		}
+		},
+		santriKelas: {
+			delete(id) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>santri/kelas/delete',
+					data:
+					{
+						id: id
+					}
+				})
+			}, insert(nama) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>santri/kelas/insert',
+					data:
+					{
+						nama: nama
+					}
+				})
+			},
+			update(id, nama) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>santri/kelas/update',
+					data:
+					{
+						id: id,
+						nama: nama,
+					}
+				})
+			},
+		},
 	}
 
 	initAjax()
