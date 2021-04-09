@@ -76,6 +76,7 @@ $(() => {
 				.done((data) => {
 					$.doneMessage('Berhasil ditambahkan.', 'Pengaturan Menu')
 					addRow(data)
+					console.log(data);
 
 				})
 				.fail(($xhr) => {

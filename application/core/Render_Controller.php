@@ -1,9 +1,10 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Render_Controller extends CI_Controller {
+class Render_Controller extends CI_Controller
+{
 
-	
+
 	protected $default_template;
 	protected $title;
 	protected $template_type;
@@ -26,22 +27,22 @@ class Render_Controller extends CI_Controller {
 	private   $plugin_scripts 	= array();
 	private   $plugin_styles 	= array();
 
-	
-	protected function preRender() { }
 
-	
-	protected function render($template = NULL) 
+	protected function preRender()
+	{
+	}
+
+
+	protected function render($template = NULL)
 	{
 		$this->preRender();
 		$this->loadPlugins();
-		
-		if($template == NULL) 
-		{
+
+		if ($template == NULL) {
 			$template = $this->default_template;
 		}
 
-		$data = array
-		(
+		$data = array(
 			// Application
 			'template_type' 	=> $this->template_type,
 			'page_setting' 		=> $this->page_setting,
@@ -58,7 +59,7 @@ class Render_Controller extends CI_Controller {
 			'breadcrumb_2_url' 	=> $this->breadcrumb_2_url,
 			'breadcrumb_3_url' 	=> $this->breadcrumb_3_url,
 			'breadcrumb_4_url' 	=> $this->breadcrumb_4_url,
-			
+
 
 			// Content
 			'plugin_styles' 	=> $this->plugin_styles,
@@ -67,22 +68,22 @@ class Render_Controller extends CI_Controller {
 			'navigation' 		=> $this->navigation,
 			'content' 			=> $this->content,
 		);
-		
+
 		$data = array_merge($data, $this->data);
 		$this->load->view($template, $data);
 	}
 
-	
-	protected function output_json($data) 
+
+	protected function output_json($data)
 	{
 		$this->output->set_content_type('application/json');
 		$this->output->set_output(json_encode($data));
 	}
 
-	
-	private function loadPlugins() 
+
+	private function loadPlugins()
 	{
-		if(empty($this->plugins)) return;
+		if (empty($this->plugins)) return;
 
 		$result 				= $this->plugin->load_plugins($this->plugins);
 
@@ -90,8 +91,8 @@ class Render_Controller extends CI_Controller {
 		$this->plugin_scripts 	= $result['scripts'];
 	}
 
-	
-	function __construct() 
+
+	function __construct()
 	{
 		parent::__construct();
 
@@ -99,9 +100,7 @@ class Render_Controller extends CI_Controller {
 		$this->copyright 		= $this->config->item('copyright');
 		$this->page_setting 	= $this->config->item('page_setting');
 		$this->template_type 	= $this->config->item('template_type');
-		
+
 		$this->load->library('plugin');
 	}
-
-
 }

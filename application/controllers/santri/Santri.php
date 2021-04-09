@@ -21,6 +21,9 @@ class Santri extends Render_Controller
 
     public function index()
     {
+        // var_dump($this->Santri->getData(1));
+        // $query = $this->db->get_where('santri', ['id_santri' => 1]);
+        // var_dump($query->row_array());
 
         // Page Settings
         $this->title                     = 'Santri';

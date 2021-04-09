@@ -137,7 +137,7 @@
 <!-- Modal Tambah -->
 <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="modalTambahLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form id="form">
+        <form id="form-tambah">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Data Santri</h5>
@@ -159,7 +159,7 @@
                             <label for="jenis_kelamin">Jenis Kelamin</label>
                             <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
                                 <option value="laki-laki">Laki-Laki</option>
-                                <option value="Perempuan">Perempuan</option>
+                                <option value="perempuan">Perempuan</option>
                             </select>
                         </div>
                         <div class="col-md-6">
@@ -176,8 +176,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="tambahAlamat">Alamat Lengkap</label>
-                                <textarea class="form-control" id="tambahAlamat" rows="3" name="alamat"></textarea>
+                                <label for="alamat_lengkap">Alamat Lengkap</label>
+                                <textarea class="form-control" id="alamat_lengkap" rows="3" name="alamat"></textarea>
                             </div>
                         </div>
                     </div>
@@ -218,11 +218,17 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">Status</div>
+                        <div class="col-md-12">
+                            <label for="status">Status</label>
+                            <select class="form-control" name="status" id="status">
+                                <option value="Aktif">Aktif</option>
+                                <option value="Non Aktif">Non Aktif</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="submit" name="simpan_tambah">
+                    <button type="submit" class="btn btn-primary" id="submit">
                         Simpan
                     </button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">
@@ -236,12 +242,12 @@
 
 
 <!-- Modal Tambah -->
-<div class="modal fade" id="modalDetail" tabindex="-1" role="dialog" aria-labelledby="modalDetailLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="modalUbah" tabindex="-1" role="dialog" aria-labelledby="modalUbahLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form id="form">
+        <form id="form-tambah">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalDetaiLabel">Detail Data Santri</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Ubah Data Santri</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -260,7 +266,7 @@
                             <label for="jenis_kelamin">Jenis Kelamin</label>
                             <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
                                 <option value="laki-laki">Laki-Laki</option>
-                                <option value="Perempuan">Perempuan</option>
+                                <option value="perempuan">Perempuan</option>
                             </select>
                         </div>
                         <div class="col-md-6">
@@ -277,8 +283,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="tambahAlamat">Alamat Lengkap</label>
-                                <textarea class="form-control" id="tambahAlamat" rows="3" name="alamat"></textarea>
+                                <label for="alamat_lengkap">Alamat Lengkap</label>
+                                <textarea class="form-control" id="alamat_lengkap" rows="3" name="alamat"></textarea>
                             </div>
                         </div>
                     </div>
@@ -319,18 +325,24 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">Status</div>
+                        <div class="col-md-12">
+                            <label for="status">Status</label>
+                            <select class="form-control" name="status" id="status">
+                                <option value="Aktif">Aktif</option>
+                                <option value="Non Aktif">Non Aktif</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="submit" name="simpan_tambah">
+                    <button type="submit" class="btn btn-primary" id="submit">
                         Simpan
                     </button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">
                         Batal
                     </button>
                 </div>
-            </div><!-- /.modal-content -->
+            </div>
         </form>
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+</div> -->

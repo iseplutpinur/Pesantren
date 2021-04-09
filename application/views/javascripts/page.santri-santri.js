@@ -50,67 +50,69 @@ $(() => {
 
 
     // Fungsi simpan
-    $('#form').submit((ev) => {
-        ev.preventDefault()
+    $('#form-tambah').submit((ev) => {
+        ev.preventDefault();
+        let tingkat_id = $("#tingkat").val();
+        let kelas_id = $("#kelas").val();
+        let ruang_id = $("#ruang").val();
+        let tahun_ajaran_id = $("#tahun_ajaran").val();
+        let nama = $("#nama").val();
+        let jenis_kelamin = $("#jenis_kelamin").val();
+        let alamat = $("#alamat_lengkap").val();
+        let status = $("#status").val();
+        let tanggal_lahir = $("#tanggal_lahir").val();
+        let no_hp = $("#no_telepon").val();
 
-        let id = $('#id').val()
-        let menu_menu_id = $('#menu_menu_id').val()
-        let nama = $('#nama').val()
-        let index = $('#index').val()
-        let icon = $('#icon').val()
-        let url = $('#url').val()
-        let keterangan = $('#keterangan').val()
-        let status = $('#status').val()
+        window.apiClient.santriSantri.insert(tingkat_id, kelas_id, ruang_id, tahun_ajaran_id, nama, jenis_kelamin, alamat, status, tanggal_lahir, no_hp)
+            .done((data) => {
+                $.doneMessage('Berhasil ditambahkan.', 'Santri Santri')
+                addRow(data)
 
-        if (id == 0) {
+            })
+            .fail(($xhr) => {
+                $.failMessage('Gagal ditambahkan.', 'Santri Santri')
+            }).
+            always(() => {
+                $('#myModal').modal('toggle')
+            })
 
-            // Insert
 
-            window.apiClient.pengaturanMenu.insert(menu_menu_id, nama, index, icon, url, keterangan, status)
-                .done((data) => {
-                    $.doneMessage('Berhasil ditambahkan.', 'Pengaturan Menu')
-                    addRow(data)
+        // if (id == 0) {
 
-                })
-                .fail(($xhr) => {
-                    $.failMessage('Gagal ditambahkan.', 'Pengaturan Menu')
-                }).
-                always(() => {
-                    $('#myModal').modal('toggle')
-                })
-        }
-        else {
+        //     // Insert
 
-            // Update
+        // }
+        // else {
 
-            window.apiClient.pengaturanMenu.update(id, menu_menu_id, nama, index, icon, url, keterangan, status)
-                .done((data) => {
-                    $.doneMessage('Berhasil diubah.', 'Pengaturan Menu')
-                    editRow(id, data)
+        //     // Update
 
-                })
-                .fail(($xhr) => {
-                    $.failMessage('Gagal diubah.', 'Pengaturan Menu')
-                }).
-                always(() => {
-                    $('#myModal').modal('toggle')
-                })
-        }
+        //     window.apiClient.santriSantri.update(id, menu_menu_id, nama, index, icon, url, keterangan, status)
+        //         .done((data) => {
+        //             $.doneMessage('Berhasil diubah.', 'Santri Santri')
+        //             editRow(id, data)
+
+        //         })
+        //         .fail(($xhr) => {
+        //             $.failMessage('Gagal diubah.', 'Santri Santri')
+        //         }).
+        //         always(() => {
+        //             $('#myModal').modal('toggle')
+        //         })
+        // }
     })
 
     // Fungsi Delete
     $('#OkCheck').click(() => {
 
         let id = $("#idCheck").val()
-
-        window.apiClient.pengaturanMenu.delete(id)
+        window.apiClient.santriSantri.delete(id)
             .done((data) => {
-                $.doneMessage('Berhasil dihapus.', 'Pengaturan Menu')
+                $.doneMessage('Berhasil dihapus.', 'Santri Santri')
                 deleteRow(id)
 
             })
             .fail(($xhr) => {
-                $.failMessage('Gagal dihapus.', 'Pengaturan Menu')
+                $.failMessage('Gagal dihapus.', 'Santri Santri')
             }).
             always(() => {
                 $('#ModalCheck').modal('toggle')
@@ -144,7 +146,7 @@ const Hapus = (id) => {
 
 // Click Ubah
 const Ubah = (id) => {
-    window.apiClient.pengaturanMenu.detail(id)
+    window.apiClient.santriSantri.detail(id)
         .done((data) => {
 
             $('#myModalLabel').html('Ubah Menu')
@@ -160,6 +162,6 @@ const Ubah = (id) => {
             $('#myModal').modal('toggle')
         })
         .fail(($xhr) => {
-            $.failMessage('Gagal mendapatkan data.', 'Pengaturan Menu')
+            $.failMessage('Gagal mendapatkan data.', 'Santri Santri')
         })
 }
