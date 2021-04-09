@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Menu extends Render_Controller {
+class Menu extends Render_Controller
+{
 
 
 	public function index()
@@ -32,20 +33,20 @@ class Menu extends Render_Controller {
 	public function getDataDetail()
 	{
 		$id 						= $this->input->post('id');
-
 		$exe 						= $this->menu->getDataDetail($id);
 
 		$this->output_json(
-		[
-			'id' 			=> $exe['menu_id'],
-			'parent' 		=> $exe['menu_menu_id'],
-			'nama' 			=> $exe['menu_nama'],
-			'index' 		=> $exe['menu_index'],
-			'icon' 			=> $exe['menu_icon'],
-			'url' 			=> $exe['menu_url'],
-			'keterangan' 	=> $exe['menu_keterangan'],
-			'status' 		=> $exe['menu_status'],
-		]);
+			[
+				'id' 			=> $exe['menu_id'],
+				'parent' 		=> $exe['menu_menu_id'],
+				'nama' 			=> $exe['menu_nama'],
+				'index' 		=> $exe['menu_index'],
+				'icon' 			=> $exe['menu_icon'],
+				'url' 			=> $exe['menu_url'],
+				'keterangan' 	=> $exe['menu_keterangan'],
+				'status' 		=> $exe['menu_status'],
+			]
+		);
 	}
 
 
@@ -63,16 +64,17 @@ class Menu extends Render_Controller {
 		$exe 						= $this->menu->insert($menu_menu_id, $nama, $index, $icon, $url, $keterangan, $status);
 
 		$this->output_json(
-		[
-			'id' 			=> $exe['id'],
-			'parent' 		=> $exe['parent'],
-			'nama' 			=> $nama,
-			'index' 		=> $index,
-			'icon' 			=> $icon,
-			'url' 			=> $url,
-			'keterangan' 	=> $keterangan,
-			'status' 		=> $status,
-		]);
+			[
+				'id' 			=> $exe['id'],
+				'parent' 		=> $exe['parent'],
+				'nama' 			=> $nama,
+				'index' 		=> $index,
+				'icon' 			=> $icon,
+				'url' 			=> $url,
+				'keterangan' 	=> $keterangan,
+				'status' 		=> $status,
+			]
+		);
 	}
 
 
@@ -91,16 +93,17 @@ class Menu extends Render_Controller {
 		$exe 						= $this->menu->update($id, $menu_menu_id, $nama, $index, $icon, $url, $keterangan, $status);
 
 		$this->output_json(
-		[
-			'id' 			=> $id,
-			'parent' 		=> $exe['parent'],
-			'nama' 			=> $nama,
-			'index' 		=> $index,
-			'icon' 			=> $icon,
-			'url' 			=> $url,
-			'keterangan' 	=> $keterangan,
-			'status' 		=> $status,
-		]);
+			[
+				'id' 			=> $id,
+				'parent' 		=> $exe['parent'],
+				'nama' 			=> $nama,
+				'index' 		=> $index,
+				'icon' 			=> $icon,
+				'url' 			=> $url,
+				'keterangan' 	=> $keterangan,
+				'status' 		=> $status,
+			]
+		);
 	}
 
 
@@ -112,9 +115,10 @@ class Menu extends Render_Controller {
 		$exe 							= $this->menu->delete($id);
 
 		$this->output_json(
-		[
-			'id' 			=> $id
-		]);
+			[
+				'id' 			=> $id
+			]
+		);
 	}
 
 
@@ -129,8 +133,6 @@ class Menu extends Render_Controller {
 		// Cek session
 		$this->sesion->cek_session();
 	}
-
-
 }
 
 /* End of file Menu.php */

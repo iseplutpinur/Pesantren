@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 09, 2021 at 12:01 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.2.34
+-- Host: localhost
+-- Generation Time: Apr 09, 2021 at 05:24 PM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -84,8 +84,10 @@ INSERT INTO `menu` (`menu_id`, `menu_menu_id`, `menu_nama`, `menu_keterangan`, `
 (4, 2, 'Menu', '-', 2, 'fa fa-caret-right', 'pengaturan/menu', 'Aktif'),
 (5, 2, 'Level', '-', 3, 'fa fa-caret-right', 'pengaturan/level', 'Aktif'),
 (6, 2, 'Pengguna', '-', 4, 'fa fa-caret-right', 'pengaturan/pengguna', 'Aktif'),
-(15, 0, 'Data Santri', 'menu santri', 2, 'fa fa-user', 'santri/Santri', 'Aktif'),
-(16, 0, 'Data Perizinan', 'Data perizinan santri', 3, 'fa fa-envelope', '#', 'Aktif');
+(15, 0, 'Santri', 'menu santri', 1, 'fa fa-user', '#', 'Aktif'),
+(16, 0, 'Data Perizinan', 'Data perizinan santri', 3, 'fa fa-envelope', '#', 'Aktif'),
+(17, 15, 'Santri', 'Data Santri', 0, 'fa fa-caret-right', 'santri/santri', 'Aktif'),
+(18, 15, 'kelas', 'dfgg', 1, 'fa fa-caret-right', '#', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -127,7 +129,9 @@ INSERT INTO `role_aplikasi` (`rola_id`, `rola_menu_id`, `rola_lev_id`) VALUES
 (7, 6, 2),
 (8, 2, 2),
 (17, 15, 2),
-(18, 16, 2);
+(18, 16, 2),
+(19, 18, 2),
+(20, 17, 2);
 
 -- --------------------------------------------------------
 
@@ -157,32 +161,125 @@ INSERT INTO `role_users` (`role_id`, `role_user_id`, `role_lev_id`) VALUES
 
 CREATE TABLE `santri` (
   `id_santri` int(11) NOT NULL,
-  `tingkat` int(30) NOT NULL,
-  `kelas` varchar(100) NOT NULL,
-  `ruang` varchar(100) NOT NULL,
-  `tahun_ajaran` varchar(50) NOT NULL,
+  `tingkat_id` int(11) DEFAULT NULL,
+  `kelas_id` int(11) DEFAULT NULL,
+  `ruang_id` int(11) DEFAULT NULL,
+  `tahun_ajaran_id` int(11) DEFAULT NULL,
   `nama` varchar(50) NOT NULL,
-  `jenis_kelamin` varchar(20) NOT NULL,
+  `jenis_kelamin` enum('laki-laki','perempuan') NOT NULL,
   `alamat` varchar(250) NOT NULL,
   `no_hp` int(14) NOT NULL,
   `status` varchar(100) NOT NULL,
-  `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `tanggal_lahir` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `santri`
+--
+
+INSERT INTO `santri` (`id_santri`, `tingkat_id`, `kelas_id`, `ruang_id`, `tahun_ajaran_id`, `nama`, `jenis_kelamin`, `alamat`, `no_hp`, `status`, `tanggal`, `tanggal_lahir`) VALUES
+(1, 1, 1, 1, 1, 'aa', 'laki-laki', 'where', 343434, 'kawin', '2021-04-09 11:57:12', NULL),
+(2, 1, 2, 2, 1, 'varchar', 'laki-laki', 'wkwkkw', 2323, 'dfafsdf', '2021-04-09 12:40:26', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Table structure for table `santri_kelas`
 --
 
-CREATE TABLE `user` (
-  `no` int(10) UNSIGNED NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `status` varchar(100) NOT NULL,
-  `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+CREATE TABLE `santri_kelas` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `santri_kelas`
+--
+
+INSERT INTO `santri_kelas` (`id`, `nama`) VALUES
+(1, 'Tahfiz'),
+(2, 'Kaligrafi');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `santri_ruang`
+--
+
+CREATE TABLE `santri_ruang` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `santri_ruang`
+--
+
+INSERT INTO `santri_ruang` (`id`, `nama`) VALUES
+(1, 'Kaligrafi'),
+(2, 'Tahfiz');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `santri_tahun_ajaran`
+--
+
+CREATE TABLE `santri_tahun_ajaran` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `santri_tahun_ajaran`
+--
+
+INSERT INTO `santri_tahun_ajaran` (`id`, `nama`) VALUES
+(1, '2021/2022'),
+(2, '2022/2023');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `santri_tingkat`
+--
+
+CREATE TABLE `santri_tingkat` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `santri_tingkat`
+--
+
+INSERT INTO `santri_tingkat` (`id`, `nama`) VALUES
+(1, 'A'),
+(2, 'B');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
+  `user_nama` varchar(50) NOT NULL,
+  `user_password` varchar(100) NOT NULL,
+  `user_email` varchar(50) NOT NULL,
+  `user_phone` varchar(15) NOT NULL,
+  `user_status` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `user_nama`, `user_password`, `user_email`, `user_phone`, `user_status`) VALUES
+(1, 'Administrator', 'utqQiS/p4vWKh3E81QVNBONFqJt14hRtvAx446gYROkV8.8kh11eS', 'administrator', '08123123', 'Aktif'),
+(2, 'Petugas TU', 'amPXcdHeGkuISXLhkffApu7xo6AwRIr8KoWb6xPc9F9ASBaoyiIZi', 'petugas1', '08123123', 'Aktif');
 
 --
 -- Indexes for dumped tables
@@ -228,13 +325,35 @@ ALTER TABLE `role_users`
 -- Indexes for table `santri`
 --
 ALTER TABLE `santri`
-  ADD PRIMARY KEY (`id_santri`);
+  ADD PRIMARY KEY (`id_santri`),
+  ADD KEY `kelas_id` (`kelas_id`),
+  ADD KEY `ruang_id` (`ruang_id`),
+  ADD KEY `tingkat_id` (`tingkat_id`),
+  ADD KEY `tahun_ajaran_id` (`tahun_ajaran_id`);
 
 --
--- Indexes for table `user`
+-- Indexes for table `santri_kelas`
 --
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`no`);
+ALTER TABLE `santri_kelas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `santri_ruang`
+--
+ALTER TABLE `santri_ruang`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `santri_tahun_ajaran`
+--
+ALTER TABLE `santri_tahun_ajaran`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `santri_tingkat`
+--
+ALTER TABLE `santri_tingkat`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -256,7 +375,7 @@ ALTER TABLE `level`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `pengaturan`
@@ -268,7 +387,7 @@ ALTER TABLE `pengaturan`
 -- AUTO_INCREMENT for table `role_aplikasi`
 --
 ALTER TABLE `role_aplikasi`
-  MODIFY `rola_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `rola_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `role_users`
@@ -280,13 +399,44 @@ ALTER TABLE `role_users`
 -- AUTO_INCREMENT for table `santri`
 --
 ALTER TABLE `santri`
-  MODIFY `id_santri` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_santri` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT for table `santri_kelas`
 --
-ALTER TABLE `user`
-  MODIFY `no` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `santri_kelas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `santri_ruang`
+--
+ALTER TABLE `santri_ruang`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `santri_tahun_ajaran`
+--
+ALTER TABLE `santri_tahun_ajaran`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `santri_tingkat`
+--
+ALTER TABLE `santri_tingkat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `santri`
+--
+ALTER TABLE `santri`
+  ADD CONSTRAINT `santri_ibfk_1` FOREIGN KEY (`kelas_id`) REFERENCES `santri_kelas` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `santri_ibfk_2` FOREIGN KEY (`ruang_id`) REFERENCES `santri_ruang` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `santri_ibfk_3` FOREIGN KEY (`tingkat_id`) REFERENCES `santri_tingkat` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `santri_ibfk_4` FOREIGN KEY (`tahun_ajaran_id`) REFERENCES `santri_tahun_ajaran` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

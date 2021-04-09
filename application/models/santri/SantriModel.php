@@ -13,4 +13,12 @@ class SantriModel extends Render_Model
         $this->db->join('santri_tahun_ajaran', 'santri_tahun_ajaran.id = santri.tahun_ajaran_id');
         return $this->db->get()->result_array();
     }
+
+    public function delete($id)
+    {
+        $exe = $this->db->where('id_santri', $id);
+        $exe = $this->db->delete('santri');
+
+        return $exe;
+    }
 }

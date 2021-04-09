@@ -3,55 +3,52 @@
 
 	<!-- row -->
 	<div class="row">
-		
+
 		<!-- col -->
 		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
 			<h1 class="page-title txt-color-blueDark">
 				<!-- PAGE HEADER -->
-				<i class="fa-fw fa fa-table"></i> 
-				
+				<i class="fa-fw fa fa-table"></i>
+
 				<?= $title ?>
 			</h1>
 		</div>
 		<!-- end col -->
-		
+
 	</div>
 	<!-- end row -->
-	
+
 	<!--
-		The ID "widget-grid" will start to initialize all widgets below 
-		You do not need to use widgets if you dont want to. Simply remove 
-		the <section></section> and you can use wells or panels instead 
+		The ID "widget-grid" will start to initialize all widgets below
+		You do not need to use widgets if you dont want to. Simply remove
+		the <section></section> and you can use wells or panels instead
 		-->
-	
+
 	<!-- widget grid -->
 	<section id="widget-grid" class="">
-	
+
 		<!-- row -->
 		<div class="row">
-			
+
 			<!-- NEW WIDGET START -->
 			<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				
+
 				<!-- Widget ID (each widget will need unique ID)-->
-				<div class="jarviswidget" id="wid-id-0"
-					data-widget-colorbutton="false"
-					data-widget-editbutton="false"
-					data-widget-deletebutton="false">
+				<div class="jarviswidget" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false">
 					<header>
 						<span class="widget-icon"> <i class="fa fa-table"></i> </span>
 					</header>
-	
+
 					<!-- widget div-->
 					<div>
-						
+
 						<!-- widget edit box -->
 						<div class="jarviswidget-editbox">
 							<!-- This area used as dropdown edit box -->
-							<input class="form-control" type="text">	
+							<input class="form-control" type="text">
 						</div>
 						<!-- end widget edit box -->
-						
+
 						<!-- widget content -->
 						<div class="widget-body">
 
@@ -60,9 +57,9 @@
 									<i class="fa fa-plus"></i> Tambah
 								</button>
 							</div>
-				
+
 							<table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
-								<thead>			                
+								<thead>
 									<tr>
 										<th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Parent</th>
 										<th data-class="expand"><i class="fa fa-fw fa-child text-muted hidden-md hidden-sm hidden-xs"></i> Nama</th>
@@ -75,58 +72,59 @@
 									</tr>
 								</thead>
 								<tbody>
-									<?php $no=1; foreach($records as $q):?>
-									<tr data-id="<?= $q['menu_id'] ?>">
-										<td><?=$q['parent']?></td>
-										<td><?=$q['menu_nama']?></td>
-										<td><?=$q['menu_keterangan']?></td>
-										<td><?=$q['menu_index']?></td>
-										<td><i class="<?=$q['menu_icon']?>"></i> <?=$q['menu_icon']?></td>
-										<td><?=$q['menu_url']?></td>
-										<td><?=$q['menu_status']?></td>
-										<td>
-											<div>
-												<button class="btn btn-primary btn-sm" onclick="Ubah(<?= $q['menu_id'] ?>)">
-													<i class="fa fa-edit"></i> Ubah
-												</button>
-												<button class="btn btn-danger btn-sm" onclick="Hapus(<?= $q['menu_id'] ?>)">
-													<i class="fa fa-trash"></i> Hapus
-												</button>
-											</div>
-										</td>
-									</tr>
-									<?php endforeach;?>
+									<?php $no = 1;
+									foreach ($records as $q) : ?>
+										<tr data-id="<?= $q['menu_id'] ?>">
+											<td><?= $q['parent'] ?></td>
+											<td><?= $q['menu_nama'] ?></td>
+											<td><?= $q['menu_keterangan'] ?></td>
+											<td><?= $q['menu_index'] ?></td>
+											<td><i class="<?= $q['menu_icon'] ?>"></i> <?= $q['menu_icon'] ?></td>
+											<td><?= $q['menu_url'] ?></td>
+											<td><?= $q['menu_status'] ?></td>
+											<td>
+												<div>
+													<button class="btn btn-primary btn-sm" onclick="Ubah(<?= $q['menu_id'] ?>)">
+														<i class="fa fa-edit"></i> Ubah
+													</button>
+													<button class="btn btn-danger btn-sm" onclick="Hapus(<?= $q['menu_id'] ?>)">
+														<i class="fa fa-trash"></i> Hapus
+													</button>
+												</div>
+											</td>
+										</tr>
+									<?php endforeach; ?>
 								</tbody>
-							</table>	
+							</table>
 						</div>
 						<!-- end widget content -->
-						
+
 					</div>
 					<!-- end widget div -->
-					
+
 				</div>
 				<!-- end widget -->
-	
+
 			</article>
 			<!-- WIDGET END -->
-			
+
 		</div>
-	
+
 		<!-- end row -->
-	
+
 		<!-- row -->
-	
+
 		<div class="row">
-	
+
 			<!-- a blank row to get started -->
 			<div class="col-sm-12">
 				<!-- your contents here -->
 			</div>
-				
+
 		</div>
-	
+
 		<!-- end row -->
-	
+
 	</section>
 	<!-- end widget grid -->
 
@@ -151,7 +149,7 @@
 								<label for="tanggal">Parent</label>
 								<select class="form-control" name="menu_menu_id" id="menu_menu_id">
 									<option value="">--Pilih Menu--</option>
-									<?php foreach($parent as $p) : ?>
+									<?php foreach ($parent as $p) : ?>
 										<option value="<?= $p['menu_id'] ?>"><?= $p['menu_nama'] ?></option>
 									<?php endforeach; ?>
 								</select>
@@ -201,11 +199,11 @@
 						<div class="col-md-12">
 							<div class="form-group">
 								<label for="nama"> Keterangan</label>
-								<textarea class="form-control" id="keterangan" placeholder="Keterangan" rows="3" required ></textarea>
+								<textarea class="form-control" id="keterangan" placeholder="Keterangan" rows="3" required></textarea>
 							</div>
 						</div>
 					</div>
-					
+
 				</div>
 				<div class="modal-footer">
 					<button type="submit" class="btn btn-primary">

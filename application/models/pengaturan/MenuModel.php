@@ -1,15 +1,16 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class MenuModel extends Render_Model {
+class MenuModel extends Render_Model
+{
 
-	
+
 	public function getAllData()
 	{
 		$exe 						= $this->db->select(' a.*, b.menu_nama as parent ')
-												->from(' menu a ')
-												->join(' menu b ', ' b.menu_id = a.menu_menu_id ', ' left ')
-												->get();
+			->from(' menu a ')
+			->join(' menu b ', ' b.menu_id = a.menu_menu_id ', ' left ')
+			->get();
 
 		return $exe->result_array();
 	}
@@ -18,9 +19,9 @@ class MenuModel extends Render_Model {
 	public function getMenuParent()
 	{
 		$exe 						= $this->db->select(' menu_id, menu_nama ')
-												->order_by(' menu_index ',' asc ')
-												->where(' menu_menu_id ' ,0)
-												->get(' menu ');
+			->order_by(' menu_index ', ' asc ')
+			->where(' menu_menu_id ', 0)
+			->get(' menu ');
 
 		return $exe->result_array();
 	}
@@ -79,8 +80,6 @@ class MenuModel extends Render_Model {
 
 		return $exe;
 	}
-
-
 }
 
 /* End of file MenuModel.php */

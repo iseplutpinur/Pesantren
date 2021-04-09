@@ -8,10 +8,6 @@ $(() => {
 		.order('asc')
 		.draw()
 
-
-
-
-
 	// Add Row
 	const addRow = (data) => {
 		let row = [
@@ -68,7 +64,7 @@ $(() => {
 		}
 	})
 
-	// Fungsi simpan 
+	// Fungsi simpan
 	$('#form').submit((ev) => {
 		ev.preventDefault()
 
@@ -155,7 +151,7 @@ $(() => {
 // Click Hapus
 const Hapus = (id) => {
 	$("#idCheck").val(id)
-	$("#LabelCheck").text('Form Hapus')
+	$("#LabelCheck").text('Hapus data santri')
 	$("#ContentCheck").text('Apakah anda yakin akan menghapus data ini?')
 	$('#ModalCheck').modal('toggle')
 }

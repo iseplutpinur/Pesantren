@@ -1,6 +1,4 @@
 $(() => {
-
-
     // initialize responsive datatable
     $.initBasicTable('#dt_basic')
     const $table = $('#dt_basic').DataTable()
@@ -11,10 +9,12 @@ $(() => {
     // Add Row
     const addRow = (data) => {
         let row = [
-            data.level,
-            data.username,
+            data.parent,
             data.nama,
-            data.telepon,
+            data.keterangan,
+            data.index,
+            '<i class="' + data.icon + '"></i> ' + data.icon,
+            data.url,
             data.status,
             '<div>'
             + '<button class="btn btn-primary btn-sm" onclick="Ubah(' + data.id + ')"><i class="fa fa-edit"></i> Ubah</button>'
@@ -31,11 +31,13 @@ $(() => {
         let row = $table.row('[data-id=' + id + ']').index()
 
         $($table.row(row).node()).attr('data-id', id)
-        $table.cell(row, 0).data(data.level)
-        $table.cell(row, 1).data(data.username)
-        $table.cell(row, 2).data(data.nama)
-        $table.cell(row, 3).data(data.telepon)
-        $table.cell(row, 4).data(data.status)
+        $table.cell(row, 0).data(data.parent)
+        $table.cell(row, 1).data(data.nama)
+        $table.cell(row, 2).data(data.keterangan)
+        $table.cell(row, 3).data(data.index)
+        $table.cell(row, 4).data('<i class="' + data.icon + '"></i> ' + data.icon)
+        $table.cell(row, 5).data(data.url)
+        $table.cell(row, 6).data(data.status)
     }
 
     // Delete Row
@@ -43,47 +45,35 @@ $(() => {
         $table.row('[data-id=' + id + ']').remove().draw()
     }
 
-    // Ulang password
-    $('#upassword').on('change', () => {
-        let password = $('#password').val()
-        let upassword = $('#upassword').val()
 
-        if (upassword != password) {
-            $.failMessage('Password tidak sama.', 'Pengaturan Pengguna')
 
-            $('#submit').prop('disabled', 'disabled')
-        }
-        else {
-            $.doneMessage('Password sama.', 'Pengaturan Pengguna')
 
-            $('#submit').prop('disabled', false)
-        }
-    })
 
-    // Fungsi simpan 
+    // Fungsi simpan
     $('#form').submit((ev) => {
         ev.preventDefault()
 
         let id = $('#id').val()
-        let level = $('#level').val()
+        let menu_menu_id = $('#menu_menu_id').val()
         let nama = $('#nama').val()
-        let telepon = $('#phone').val()
-        let username = $('#username').val()
-        let password = $('#password').val()
+        let index = $('#index').val()
+        let icon = $('#icon').val()
+        let url = $('#url').val()
+        let keterangan = $('#keterangan').val()
         let status = $('#status').val()
 
         if (id == 0) {
 
             // Insert
 
-            window.apiClient.pengaturanPengguna.insert(level, nama, telepon, username, password, status)
+            window.apiClient.pengaturanMenu.insert(menu_menu_id, nama, index, icon, url, keterangan, status)
                 .done((data) => {
-                    $.doneMessage('Berhasil ditambahkan.', 'Pengaturan Pengguna')
+                    $.doneMessage('Berhasil ditambahkan.', 'Pengaturan Menu')
                     addRow(data)
 
                 })
                 .fail(($xhr) => {
-                    $.failMessage('Gagal ditambahkan.', 'Pengaturan Pengguna')
+                    $.failMessage('Gagal ditambahkan.', 'Pengaturan Menu')
                 }).
                 always(() => {
                     $('#myModal').modal('toggle')
@@ -93,14 +83,14 @@ $(() => {
 
             // Update
 
-            window.apiClient.pengaturanPengguna.update(id, level, nama, telepon, username, password, status)
+            window.apiClient.pengaturanMenu.update(id, menu_menu_id, nama, index, icon, url, keterangan, status)
                 .done((data) => {
-                    $.doneMessage('Berhasil diubah.', 'Pengaturan Pengguna')
+                    $.doneMessage('Berhasil diubah.', 'Pengaturan Menu')
                     editRow(id, data)
 
                 })
                 .fail(($xhr) => {
-                    $.failMessage('Gagal diubah.', 'Pengaturan Pengguna')
+                    $.failMessage('Gagal diubah.', 'Pengaturan Menu')
                 }).
                 always(() => {
                     $('#myModal').modal('toggle')
@@ -113,14 +103,14 @@ $(() => {
 
         let id = $("#idCheck").val()
 
-        window.apiClient.pengaturanPengguna.delete(id)
+        window.apiClient.pengaturanMenu.delete(id)
             .done((data) => {
-                $.doneMessage('Berhasil dihapus.', 'Pengaturan Pengguna')
+                $.doneMessage('Berhasil dihapus.', 'Pengaturan Menu')
                 deleteRow(id)
 
             })
             .fail(($xhr) => {
-                $.failMessage('Gagal dihapus.', 'Pengaturan Pengguna')
+                $.failMessage('Gagal dihapus.', 'Pengaturan Menu')
             }).
             always(() => {
                 $('#ModalCheck').modal('toggle')
@@ -129,14 +119,14 @@ $(() => {
 
     // Clik Tambah
     $('#tambah').on('click', () => {
-        $('#myModalLabel').html('Tambah Pengguna')
+        $('#myModalLabel').html('Tambah Menu')
         $('#id').val('')
-        $('#level').val('')
+        $('#menu_menu_id').val('')
         $('#nama').val('')
-        $('#phone').val('')
-        $('#username').val('')
-        $('#password').val('')
-        $('#upassword').val('')
+        $('#index').val('')
+        $('#icon').val('')
+        $('#url').val('')
+        $('#keterangan').val('')
         $('#status').val('')
 
         $('#myModal').modal('toggle')
@@ -154,20 +144,22 @@ const Hapus = (id) => {
 
 // Click Ubah
 const Ubah = (id) => {
-    window.apiClient.pengaturanPengguna.detail(id)
+    window.apiClient.pengaturanMenu.detail(id)
         .done((data) => {
 
-            $('#myModalLabel').html('Ubah Pengguna')
+            $('#myModalLabel').html('Ubah Menu')
             $('#id').val(data.id)
-            $('#level').val(data.level)
+            $('#menu_menu_id').val(data.parent)
             $('#nama').val(data.nama)
-            $('#phone').val(data.phone)
-            $('#username').val(data.username)
+            $('#index').val(data.index)
+            $('#icon').val(data.icon)
+            $('#url').val(data.url)
+            $('#keterangan').val(data.keterangan)
             $('#status').val(data.status)
 
             $('#myModal').modal('toggle')
         })
         .fail(($xhr) => {
-            $.failMessage('Gagal mendapatkan data.', 'Pengaturan Pengguna')
+            $.failMessage('Gagal mendapatkan data.', 'Pengaturan Menu')
         })
 }
