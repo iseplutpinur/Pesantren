@@ -34,13 +34,16 @@ $(() => {
         let row = $table.row('[data-id=' + id + ']').index()
 
         $($table.row(row).node()).attr('data-id', id)
-        $table.cell(row, 0).data(data.parent)
-        $table.cell(row, 1).data(data.nama)
-        $table.cell(row, 2).data(data.keterangan)
-        $table.cell(row, 3).data(data.index)
-        $table.cell(row, 4).data('<i class="' + data.icon + '"></i> ' + data.icon)
-        $table.cell(row, 5).data(data.url)
-        $table.cell(row, 6).data(data.status)
+        $table.cell(row, 0).data(data.nama)
+        $table.cell(row, 1).data(data.jenis_kelamin)
+        $table.cell(row, 2).data(data.tanggal_lahir)
+        $table.cell(row, 3).data(data.alamat)
+        $table.cell(row, 4).data(data.no_hp)
+        $table.cell(row, 5).data(data.kelas)
+        $table.cell(row, 6).data(data.ringkat)
+        $table.cell(row, 7).data(data.ruang)
+        $table.cell(row, 8).data(data.tahun_ajaran)
+        $table.cell(row, 9).data(data.status)
     }
 
     // Delete Row
@@ -92,8 +95,8 @@ $(() => {
 
         window.apiClient.santriSantri.update(id_santri, tingkat_id, kelas_id, ruang_id, tahun_ajaran_id, nama, jenis_kelamin, alamat, status, tanggal_lahir, no_hp)
             .done((data) => {
+                editRow(id_santri, data);
                 $.doneMessage('Berhasil Diubah.', 'Santri Santri')
-                console.log(data);
             })
             .fail(($xhr) => {
                 $.failMessage('Gagal Diubah.', 'Santri Santri')

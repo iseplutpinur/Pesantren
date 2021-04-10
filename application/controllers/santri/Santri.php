@@ -90,7 +90,7 @@ class Santri extends Render_Controller
         $tanggal_lahir = $this->input->post('tanggal_lahir');
         $no_hp = $this->input->post('no_hp');
 
-        $exe = $this->Santri->insert($id_santri, $tingkat_id, $kelas_id, $ruang_id, $tahun_ajaran_id, $nama, $jenis_kelamin, $alamat, $status, $tanggal_lahir, $no_hp);
+        $exe = $this->Santri->update($id_santri, $tingkat_id, $kelas_id, $ruang_id, $tahun_ajaran_id, $nama, $jenis_kelamin, $alamat, $status, $tanggal_lahir, $no_hp);
 
         $this->output_json($this->Santri->getData($exe['id']));
     }
