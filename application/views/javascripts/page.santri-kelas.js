@@ -80,12 +80,12 @@ $(() => {
 
         window.apiClient.santriKelas.update(id, nama)
             .done((data) => {
-                $.doneMessage('Berhasil diubah.', 'Santri Santri')
+                $.doneMessage('Berhasil diubah.', 'Santri Kelas')
                 editRow(id, data)
 
             })
             .fail(($xhr) => {
-                $.failMessage('Gagal diubah. data mungkin sudah ada.', 'Santri Santri')
+                $.failMessage('Gagal diubah. data mungkin sudah ada.', 'Santri Kelas')
             }).
             always(() => {
                 $('#modalUbah').modal('toggle')
@@ -98,31 +98,16 @@ $(() => {
         let id = $("#idCheck").val()
         window.apiClient.santriKelas.delete(id)
             .done((data) => {
-                $.doneMessage('Berhasil dihapus.', 'Santri Santri')
+                $.doneMessage('Berhasil dihapus.', 'Santri Kelas')
                 deleteRow(id)
 
             })
             .fail(($xhr) => {
-                $.failMessage('Gagal dihapus.', 'Santri Santri')
+                $.failMessage('Gagal dihapus.', 'Santri Kelas')
             }).
             always(() => {
                 $('#ModalCheck').modal('toggle')
             })
-    })
-
-    // Clik Tambah
-    $('#tambah').on('click', () => {
-        $('#myModalLabel').html('Tambah Menu')
-        $('#id').val('')
-        $('#menu_menu_id').val('')
-        $('#nama').val('')
-        $('#index').val('')
-        $('#icon').val('')
-        $('#url').val('')
-        $('#keterangan').val('')
-        $('#status').val('')
-
-        $('#myModal').modal('toggle')
     })
 
 })

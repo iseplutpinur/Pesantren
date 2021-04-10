@@ -126,7 +126,7 @@
         <form id="form-tambah">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Santri</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Tahun Ajaran</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -135,8 +135,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="nama">Nama Kelas</label>
-                                <input type="text" id="nama" class="form-control" name="nama" placeholder="Nama Kelas" required />
+                                <label for="nama">Nama Tahun Ajaran</label>
+                                <input type="text" id="nama" class="form-control" name="nama" placeholder="Nama Tahun Ajaran" required />
                             </div>
                         </div>
                     </div>
@@ -161,7 +161,7 @@
         <form id="form-ubah">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalUbahLabel">Ubah Data Santri</h5>
+                    <h5 class="modal-title" id="modalUbahLabel">Ubah Data Tahun Ajaran</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -170,9 +170,9 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="nama">Nama Kelas</label>
+                                <label for="nama">Nama Tahun Ajaran</label>
                                 <input type="text" id="id-ubah" name="id-ubah" style="display:none" />
-                                <input type="text" id="nama-ubah" class="form-control" name="nama-ubah" placeholder="Nama Kelas" required />
+                                <input type="text" id="nama-ubah" class="form-control" name="nama-ubah" placeholder="Nama Tahun Ajaran" required />
                             </div>
                         </div>
                     </div>

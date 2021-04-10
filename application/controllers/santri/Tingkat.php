@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class TahunAjaran extends Render_Controller
+class Tingkat extends Render_Controller
 {
     function __construct()
     {
         parent::__construct();
-        $this->load->model('santri/TahunAjaranModel', 'TahunAjaran');
+        $this->load->model('santri/TingkatModel', 'Tingkat');
         $this->default_template = 'templates/dashboard';
         $this->load->library('plugin');
         $this->load->helper('url');
@@ -18,9 +18,9 @@ class TahunAjaran extends Render_Controller
     public function index()
     {
         // Page Settings
-        $this->title                     = 'Santri Tahun Ajaran';
-        $this->content                     = 'santri-tahun_ajaran';
-        $this->navigation                 = ['santri', 'Tahun Ajaran'];
+        $this->title                     = 'Santri Tingkat';
+        $this->content                     = 'santri-tingkat';
+        $this->navigation                 = ['santri', 'Tingkat'];
         $this->plugins                     = ['datatables'];
 
         // Breadcrumb setting
@@ -28,11 +28,11 @@ class TahunAjaran extends Render_Controller
         $this->breadcrumb_1_url         = base_url() . 'dashboard';
         $this->breadcrumb_2             = 'Santri';
         $this->breadcrumb_2_url         = '#';
-        $this->breadcrumb_3             = 'Tahun Ajaran';
+        $this->breadcrumb_3             = 'Tingkat';
         $this->breadcrumb_3_url         = '#';
 
         // // Send data to view
-        $this->data['tahun_ajaran'] = $this->TahunAjaran->getData();
+        $this->data['Tingkat'] = $this->Tingkat->getData();
         $this->render();
     }
 
@@ -41,7 +41,7 @@ class TahunAjaran extends Render_Controller
     {
         $id = $this->input->post('id');
 
-        $exe = $this->TahunAjaran->delete($id);
+        $exe = $this->Tingkat->delete($id);
 
         $this->output_json(
             [
@@ -54,7 +54,7 @@ class TahunAjaran extends Render_Controller
     public function insert()
     {
         $nama = $this->input->post('nama');
-        $exe = $this->TahunAjaran->insert($nama);
+        $exe = $this->Tingkat->insert($nama);
         $this->output_json(
             [
                 'id' => $exe['id'],
@@ -68,7 +68,7 @@ class TahunAjaran extends Render_Controller
     {
         $id                         = $this->input->post('id');
         $nama                         = $this->input->post('nama');
-        $exe                         = $this->TahunAjaran->update($id, $nama);
+        $exe                         = $this->Tingkat->update($id, $nama);
 
         $this->output_json(
             [

@@ -56,14 +56,14 @@ $(() => {
 
         let nama = $("#nama").val();
 
-        window.apiClient.santriTahunAjaran.insert(nama)
+        window.apiClient.santriTingkat.insert(nama)
             .done((data) => {
-                $.doneMessage('Berhasil ditambahkan.', 'Santri Tahun Ajaran')
+                $.doneMessage('Berhasil ditambahkan.', 'Santri Tingkat')
                 addRow(data)
 
             })
             .fail(($xhr) => {
-                $.failMessage('Gagal ditambahkan. data mungkin sudah ada.', 'Santri Tahun Ajaran')
+                $.failMessage('Gagal ditambahkan. data mungkin sudah ada.', 'Santri Tingkat')
             }).
             always(() => {
                 $('#modalTambah').modal('toggle')
@@ -78,14 +78,14 @@ $(() => {
         let nama = $("#nama-ubah").val();
         let id = $("#id-ubah").val();
 
-        window.apiClient.santriTahunAjaran.update(id, nama)
+        window.apiClient.santriTingkat.update(id, nama)
             .done((data) => {
-                $.doneMessage('Berhasil diubah.', 'Santri Tahun Ajaran')
+                $.doneMessage('Berhasil diubah.', 'Santri Tingkat')
                 editRow(id, data)
 
             })
             .fail(($xhr) => {
-                $.failMessage('Gagal diubah. data mungkin sudah ada.', 'Santri Tahun Ajaran')
+                $.failMessage('Gagal diubah. data mungkin sudah ada.', 'Santri Tingkat')
             }).
             always(() => {
                 $('#modalUbah').modal('toggle')
@@ -96,14 +96,14 @@ $(() => {
     $('#OkCheck').click(() => {
 
         let id = $("#idCheck").val()
-        window.apiClient.santriTahunAjaran.delete(id)
+        window.apiClient.santriTingkat.delete(id)
             .done((data) => {
-                $.doneMessage('Berhasil dihapus.', 'Santri Tahun Ajaran')
+                $.doneMessage('Berhasil dihapus.', 'Santri Tingkat')
                 deleteRow(id)
 
             })
             .fail(($xhr) => {
-                $.failMessage('Gagal dihapus.', 'Santri Tahun Ajaran')
+                $.failMessage('Gagal dihapus.', 'Santri Tingkat')
             }).
             always(() => {
                 $('#ModalCheck').modal('toggle')
@@ -114,7 +114,7 @@ $(() => {
 // Click Hapus
 const Hapus = (id) => {
     $("#idCheck").val(id)
-    $("#LabelCheck").text('Hapus Tahun Ajaran Santri')
+    $("#LabelCheck").text('Hapus Tingkat Santri')
     $("#ContentCheck").text('Apakah anda yakin akan menghapus data ini?')
     $('#ModalCheck').modal('toggle')
 }

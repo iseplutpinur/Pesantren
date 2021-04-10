@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 10, 2021 at 01:45 AM
+-- Generation Time: Apr 10, 2021 at 08:25 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 SET
@@ -27,7 +27,7 @@ SET
 ;
 
 --
--- Database: `wkwk`
+-- Database: `kosongan`
 --
 -- --------------------------------------------------------
 --
@@ -195,6 +195,36 @@ VALUES
     'fa fa-caret-right',
     'santri/kelas',
     'Aktif'
+  ),
+  (
+    20,
+    15,
+    'Tahun Ajaran',
+    'Tahun Ajaran Santri',
+    2,
+    'fa fa-caret-right',
+    'santri/tahunajaran',
+    'Aktif'
+  ),
+  (
+    21,
+    15,
+    'Tingkat',
+    'Tingkat Santri',
+    3,
+    'fa fa-caret-right',
+    'santri/tingkat',
+    'Aktif'
+  ),
+  (
+    22,
+    15,
+    'Ruang',
+    'Ruang Santri',
+    4,
+    'fa fa-caret-right',
+    'santri/ruang',
+    'Aktif'
   );
 
 -- --------------------------------------------------------
@@ -236,7 +266,10 @@ VALUES
   (17, 15, 2),
   (18, 16, 2),
   (19, 18, 2),
-  (20, 17, 2);
+  (20, 17, 2),
+  (21, 20, 2),
+  (22, 22, 2),
+  (23, 21, 2);
 
 -- --------------------------------------------------------
 --
@@ -325,8 +358,6 @@ CREATE TABLE `santri_kelas` (
 INSERT INTO
   `santri_kelas` (`id`, `nama`)
 VALUES
-  (23, '123'),
-  (22, '1231111111111111111'),
   (20, '12333'),
   (21, '12345'),
   (18, '123sdsa'),
@@ -340,7 +371,9 @@ VALUES
   (3, 'fsgfdg'),
   (2, 'Kaligrafi'),
   (19, 'sd'),
+  (25, 'ssadsad'),
   (1, 'Tahfiz'),
+  (26, 'Terbaik'),
   (9, 'xczxcxzcZ');
 
 -- --------------------------------------------------------
@@ -359,7 +392,8 @@ INSERT INTO
   `santri_ruang` (`id`, `nama`)
 VALUES
   (1, 'Kaligrafi'),
-  (2, 'Tahfiz');
+  (4, 'kk'),
+  (2, 'Tahfiz 2');
 
 -- --------------------------------------------------------
 --
@@ -376,7 +410,7 @@ CREATE TABLE `santri_tahun_ajaran` (
 INSERT INTO
   `santri_tahun_ajaran` (`id`, `nama`)
 VALUES
-  (1, '2021/2022'),
+  (1, '2021/202211'),
   (2, '2022/2023');
 
 -- --------------------------------------------------------
@@ -395,7 +429,8 @@ INSERT INTO
   `santri_tingkat` (`id`, `nama`)
 VALUES
   (1, 'A'),
-  (2, 'B');
+  (2, 'B'),
+  (3, 'Glosarium b');
 
 -- --------------------------------------------------------
 --
@@ -574,7 +609,7 @@ ALTER TABLE
   `menu`
 MODIFY
   `menu_id` int(11) NOT NULL AUTO_INCREMENT,
-  AUTO_INCREMENT = 20;
+  AUTO_INCREMENT = 23;
 
 --
 -- AUTO_INCREMENT for table `pengaturan`
@@ -591,7 +626,7 @@ ALTER TABLE
   `role_aplikasi`
 MODIFY
   `rola_id` int(11) NOT NULL AUTO_INCREMENT,
-  AUTO_INCREMENT = 21;
+  AUTO_INCREMENT = 24;
 
 --
 -- AUTO_INCREMENT for table `role_users`
@@ -618,7 +653,7 @@ ALTER TABLE
   `santri_kelas`
 MODIFY
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  AUTO_INCREMENT = 25;
+  AUTO_INCREMENT = 27;
 
 --
 -- AUTO_INCREMENT for table `santri_ruang`
@@ -627,7 +662,7 @@ ALTER TABLE
   `santri_ruang`
 MODIFY
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  AUTO_INCREMENT = 3;
+  AUTO_INCREMENT = 5;
 
 --
 -- AUTO_INCREMENT for table `santri_tahun_ajaran`
@@ -636,7 +671,7 @@ ALTER TABLE
   `santri_tahun_ajaran`
 MODIFY
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  AUTO_INCREMENT = 3;
+  AUTO_INCREMENT = 4;
 
 --
 -- AUTO_INCREMENT for table `santri_tingkat`
@@ -645,7 +680,7 @@ ALTER TABLE
   `santri_tingkat`
 MODIFY
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  AUTO_INCREMENT = 3;
+  AUTO_INCREMENT = 5;
 
 --
 -- Constraints for dumped tables

@@ -444,6 +444,102 @@ $(() => {
 				})
 			},
 		},
+		santriTahunAjaran: {
+			delete(id) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>santri/tahunajaran/delete',
+					data:
+					{
+						id: id
+					}
+				})
+			}, insert(nama) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>santri/tahunajaran/insert',
+					data:
+					{
+						nama: nama
+					}
+				})
+			},
+			update(id, nama) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>santri/tahunajaran/update',
+					data:
+					{
+						id: id,
+						nama: nama,
+					}
+				})
+			},
+		},
+		santriTingkat: {
+			delete(id) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>santri/tingkat/delete',
+					data:
+					{
+						id: id
+					}
+				})
+			}, insert(nama) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>santri/tingkat/insert',
+					data:
+					{
+						nama: nama
+					}
+				})
+			},
+			update(id, nama) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>santri/tingkat/update',
+					data:
+					{
+						id: id,
+						nama: nama,
+					}
+				})
+			},
+		},
+		santriRuang: {
+			delete(id) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>santri/ruang/delete',
+					data:
+					{
+						id: id
+					}
+				})
+			}, insert(nama) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>santri/ruang/insert',
+					data:
+					{
+						nama: nama
+					}
+				})
+			},
+			update(id, nama) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>santri/ruang/update',
+					data:
+					{
+						id: id,
+						nama: nama,
+					}
+				})
+			},
+		},
 	}
 
 	initAjax()

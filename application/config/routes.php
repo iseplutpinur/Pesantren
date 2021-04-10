@@ -55,3 +55,7 @@ $route['translate_uri_dashes'] = TRUE;
 
 $route['javascripts/(:any).js'] = 'loader/javascripts/$1';
 $route['stylesheets/(:any).css'] = 'loader/stylesheets/$1';
+
+// Santri -> Tahun Ajaran
+$route['santri/tahunajaran/(:any)'] = 'santri/TahunAjaran/$1';
+$route['santri/tahunajaran'] = 'santri/TahunAjaran';
