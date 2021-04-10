@@ -21,10 +21,6 @@ class Santri extends Render_Controller
 
     public function index()
     {
-        // var_dump($this->Santri->getData(1));
-        // $query = $this->db->get_where('santri', ['id_santri' => 1]);
-        // var_dump($query->row_array());
-
         // Page Settings
         $this->title                     = 'Santri';
         $this->content                     = 'santri-santri';
@@ -60,5 +56,23 @@ class Santri extends Render_Controller
                 'id'             => $id
             ]
         );
+    }
+
+    public function insert()
+    {
+        $tingkat_id = $this->input->post('tingkat_id');
+        $kelas_id = $this->input->post('kelas_id');
+        $ruang_id = $this->input->post('ruang_id');
+        $tahun_ajaran_id = $this->input->post('tahun_ajaran_id');
+        $nama = $this->input->post('nama');
+        $jenis_kelamin = $this->input->post('jenis_kelamin');
+        $alamat = $this->input->post('alamat');
+        $status = $this->input->post('status');
+        $tanggal_lahir = $this->input->post('tanggal_lahir');
+        $no_hp = $this->input->post('no_hp');
+
+        $exe = $this->Santri->insert($tingkat_id, $kelas_id, $ruang_id, $tahun_ajaran_id, $nama, $jenis_kelamin, $alamat, $status, $tanggal_lahir, $no_hp);
+
+        $this->output_json($this->Santri->getData($exe['id']));
     }
 }

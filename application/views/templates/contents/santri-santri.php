@@ -61,30 +61,34 @@
                             <table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
                                 <thead>
                                     <tr>
-                                        <th data-hide="expand"><i class="fa fa-fw fa-star-align-justify text-muted hidden-md hidden-sm hidden-xs"></i> Nomor</th>
                                         <th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Nama</th>
-                                        <th data-class="expand"><i class="fa fa-fw fa-child text-muted hidden-md hidden-sm hidden-xs"></i> Jenisk Kelamin</th>
+                                        <th data-class="expand"><i class="fa fa-fw fa-child text-muted hidden-md hidden-sm hidden-xs"></i> JK</th>
+                                        <th data-class="expand"><i class="fa fa-fw fa-child text-muted hidden-md hidden-sm hidden-xs"></i> Tgl Lahir</th>
+                                        <th data-class="expand"><i class="fa fa-fw fa-child text-muted hidden-md hidden-sm hidden-xs"></i> Alamat</th>
+                                        <th data-class="expand"><i class="fa fa-fw fa-child text-muted hidden-md hidden-sm hidden-xs"></i> No Telepon</th>
                                         <th data-class="expand"><i class="fa fa-fw fa-align-justify text-muted hidden-md hidden-sm hidden-xs"></i> Kelas</th>
                                         <th data-class="expand"><i class="fa fa-fw fa-align-justify text-muted hidden-md hidden-sm hidden-xs"></i> Tingkat</th>
                                         <th data-hide="expand"><i class="fa fa-fw fa-star-align-justify text-muted hidden-md hidden-sm hidden-xs"></i> Ruang</th>
+                                        <th data-hide="expand"><i class="fa fa-fw fa-star-align-justify text-muted hidden-md hidden-sm hidden-xs"></i> Tahun Ajaran</th>
+                                        <th data-hide="expand"><i class="fa fa-fw fa-star-align-justify text-muted hidden-md hidden-sm hidden-xs"></i> Status</th>
                                         <th><i class="fa fa-fw fa-align-justify text-muted hidden-md hidden-sm hidden-xs"></i>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $no = 1;
-                                    foreach ($records as $q) : ?>
+                                    <?php foreach ($records as $q) : ?>
                                         <tr data-id="<?= $q['id_santri'] ?>">
-                                            <td><?= $no ?></td>
                                             <td><?= $q['nama'] ?></td>
                                             <td><?= $q['jenis_kelamin'] ?></td>
+                                            <td><?= $q['tanggal_lahir'] ?></td>
+                                            <td><?= $q['alamat'] ?></td>
+                                            <td><?= $q['no_hp'] ?></td>
                                             <td><?= $q['kelas'] ?></td>
                                             <td><?= $q['tingkat'] ?></td>
                                             <td><?= $q['ruang'] ?></td>
+                                            <td><?= $q['tahun_ajaran'] ?></td>
+                                            <td><?= $q['status'] ?></td>
                                             <td>
                                                 <div>
-                                                    <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalTambah" onclick="detail(this)">
-                                                        <i class="fa fa-info"></i> Detail
-                                                    </button>
                                                     <button class="btn btn-primary btn-sm" onclick="Ubah()">
                                                         <i class="fa fa-edit"></i> Ubah
                                                     </button>
@@ -94,8 +98,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                    <?php $no++;
-                                    endforeach; ?>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>

@@ -9,21 +9,24 @@ $(() => {
     // Add Row
     const addRow = (data) => {
         let row = [
-            data.parent,
             data.nama,
-            data.keterangan,
-            data.index,
-            '<i class="' + data.icon + '"></i> ' + data.icon,
-            data.url,
+            data.jenis_kelamin,
+            data.tanggal_lahir,
+            data.alamat,
+            data.no_hp,
+            data.kelas,
+            data.tingkat,
+            data.ruang,
+            data.tahun_ajaran,
             data.status,
             '<div>'
-            + '<button class="btn btn-primary btn-sm" onclick="Ubah(' + data.id + ')"><i class="fa fa-edit"></i> Ubah</button>'
-            + '<button class="btn btn-danger btn-sm" onclick="Hapus(' + data.id + ')"><i class="fa fa-trash"></i> Hapus</button>'
+            + '<button class="btn btn-primary btn-sm" onclick="Ubah(' + data.id_santri + ')"><i class="fa fa-edit"></i> Ubah</button>'
+            + '<button class="btn btn-danger btn-sm" onclick="Hapus(' + data.id_santri + ')"><i class="fa fa-trash"></i> Hapus</button>'
             + '</div>'
         ]
 
         let $node = $($table.row.add(row).draw().node())
-        $node.attr('data-id', data.id)
+        $node.attr('data-id', data.id_santri)
     }
 
     // Edit Row
@@ -67,38 +70,13 @@ $(() => {
             .done((data) => {
                 $.doneMessage('Berhasil ditambahkan.', 'Santri Santri')
                 addRow(data)
-
             })
             .fail(($xhr) => {
                 $.failMessage('Gagal ditambahkan.', 'Santri Santri')
             }).
             always(() => {
-                $('#myModal').modal('toggle')
+                $('#modalTambah').modal('toggle')
             })
-
-
-        // if (id == 0) {
-
-        //     // Insert
-
-        // }
-        // else {
-
-        //     // Update
-
-        //     window.apiClient.santriSantri.update(id, menu_menu_id, nama, index, icon, url, keterangan, status)
-        //         .done((data) => {
-        //             $.doneMessage('Berhasil diubah.', 'Santri Santri')
-        //             editRow(id, data)
-
-        //         })
-        //         .fail(($xhr) => {
-        //             $.failMessage('Gagal diubah.', 'Santri Santri')
-        //         }).
-        //         always(() => {
-        //             $('#myModal').modal('toggle')
-        //         })
-        // }
     })
 
     // Fungsi Delete

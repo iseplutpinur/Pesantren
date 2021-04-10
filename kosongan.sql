@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 10, 2021 at 08:25 AM
+-- Generation Time: Apr 10, 2021 at 09:09 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 SET
@@ -304,7 +304,7 @@ CREATE TABLE `santri` (
   `jenis_kelamin` enum('laki-laki', 'perempuan') NOT NULL,
   `alamat` varchar(250) NOT NULL,
   `no_hp` int(14) NOT NULL,
-  `status` varchar(100) NOT NULL,
+  `status` enum('Aktif', 'Non Aktif') NOT NULL,
   `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `tanggal_lahir` date DEFAULT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
@@ -338,9 +338,93 @@ VALUES
     'laki-laki',
     'where',
     343434,
-    'kawin',
-    '2021-04-09 11:57:12',
-    NULL
+    'Non Aktif',
+    '2021-04-10 06:34:08',
+    '2021-04-05'
+  ),
+  (
+    3,
+    3,
+    18,
+    2,
+    1,
+    'Din Syamsydub',
+    'laki-laki',
+    'Bandung',
+    123,
+    'Aktif',
+    '2021-04-10 06:33:52',
+    '2021-04-13'
+  ),
+  (
+    4,
+    1,
+    20,
+    1,
+    1,
+    'dfgf',
+    'laki-laki',
+    'fgdg',
+    324234,
+    'Aktif',
+    '2021-04-10 06:56:57',
+    '2021-04-12'
+  ),
+  (
+    5,
+    1,
+    20,
+    1,
+    1,
+    'sdfadssdfsdaf',
+    'perempuan',
+    'sfasdf',
+    3244324,
+    'Aktif',
+    '2021-04-10 07:02:53',
+    '2021-04-06'
+  ),
+  (
+    6,
+    1,
+    20,
+    1,
+    1,
+    'sdfsdfsdf',
+    'laki-laki',
+    'sdfsdfsdafsdaf',
+    234234,
+    'Aktif',
+    '2021-04-10 07:07:34',
+    '2021-04-13'
+  ),
+  (
+    7,
+    1,
+    20,
+    1,
+    1,
+    'sdfsdfsdf',
+    'laki-laki',
+    'sdfsdfsdafsdaf',
+    234234,
+    'Aktif',
+    '2021-04-10 07:07:44',
+    '2021-04-13'
+  ),
+  (
+    8,
+    1,
+    20,
+    1,
+    1,
+    'sdfsdaf',
+    'perempuan',
+    'sdfasdf',
+    234234,
+    'Aktif',
+    '2021-04-10 07:08:36',
+    '2021-04-06'
   );
 
 -- --------------------------------------------------------
@@ -644,7 +728,7 @@ ALTER TABLE
   `santri`
 MODIFY
   `id_santri` int(11) NOT NULL AUTO_INCREMENT,
-  AUTO_INCREMENT = 3;
+  AUTO_INCREMENT = 9;
 
 --
 -- AUTO_INCREMENT for table `santri_kelas`
