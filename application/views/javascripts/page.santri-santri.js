@@ -48,11 +48,7 @@ $(() => {
         $table.row('[data-id=' + id + ']').remove().draw()
     }
 
-
-
-
-
-    // Fungsi simpan
+    // Fungsi simpan tambah
     $('#form-tambah').submit((ev) => {
         ev.preventDefault();
         let tingkat_id = $("#tingkat").val();
@@ -79,6 +75,34 @@ $(() => {
             })
     })
 
+    // Fungsi simpan tambah
+    $('#form-ubah').submit((ev) => {
+        ev.preventDefault();
+        let id_santri = $("#ubah-id_santri").val();
+        let alamat = $("#ubah-alamat").val();
+        let jenis_kelamin = $("#ubah-jenis_kelamin").val();
+        let nama = $("#ubah-nama").val();
+        let no_hp = $("#ubah-no_hp").val();
+        let status = $("#ubah-status").val();
+        let tanggal_lahir = $("#ubah-tanggal_lahir").val();
+        let tahun_ajaran_id = $("#ubah-tahun_ajaran").val();
+        let kelas_id = $("#ubah-kelas").val();
+        let ruang_id = $("#ubah-ruang").val();
+        let tingkat_id = $("#ubah-tingkat").val();
+
+        window.apiClient.santriSantri.update(id_santri, tingkat_id, kelas_id, ruang_id, tahun_ajaran_id, nama, jenis_kelamin, alamat, status, tanggal_lahir, no_hp)
+            .done((data) => {
+                $.doneMessage('Berhasil Diubah.', 'Santri Santri')
+                console.log(data);
+            })
+            .fail(($xhr) => {
+                $.failMessage('Gagal Diubah.', 'Santri Santri')
+            }).
+            always(() => {
+                $('#modalUbah').modal('toggle')
+            })
+    })
+
     // Fungsi Delete
     $('#OkCheck').click(() => {
 
@@ -96,22 +120,6 @@ $(() => {
                 $('#ModalCheck').modal('toggle')
             })
     })
-
-    // Clik Tambah
-    $('#tambah').on('click', () => {
-        $('#myModalLabel').html('Tambah Menu')
-        $('#id').val('')
-        $('#menu_menu_id').val('')
-        $('#nama').val('')
-        $('#index').val('')
-        $('#icon').val('')
-        $('#url').val('')
-        $('#keterangan').val('')
-        $('#status').val('')
-
-        $('#myModal').modal('toggle')
-    })
-
 })
 
 // Click Hapus
@@ -126,18 +134,18 @@ const Hapus = (id) => {
 const Ubah = (id) => {
     window.apiClient.santriSantri.detail(id)
         .done((data) => {
-
-            $('#myModalLabel').html('Ubah Menu')
-            $('#id').val(data.id)
-            $('#menu_menu_id').val(data.parent)
-            $('#nama').val(data.nama)
-            $('#index').val(data.index)
-            $('#icon').val(data.icon)
-            $('#url').val(data.url)
-            $('#keterangan').val(data.keterangan)
-            $('#status').val(data.status)
-
-            $('#myModal').modal('toggle')
+            $("#ubah-alamat").val(data.alamat);
+            $("#ubah-id_santri").val(data.id_santri);
+            $("#ubah-jenis_kelamin").val(data.jenis_kelamin);
+            $("#ubah-nama").val(data.nama);
+            $("#ubah-no_hp").val(data.no_hp);
+            $("#ubah-status").val(data.status);
+            $("#ubah-tanggal_lahir").val(data.tanggal_lahir);
+            $("#ubah-tahun_ajaran").val(data.id_tahun_ajaran);
+            $("#ubah-kelas").val(data.id_kelas);
+            $("#ubah-ruang").val(data.id_ruang);
+            $("#ubah-tingkat").val(data.id_tingkat);
+            $('#modalUbah').modal('toggle')
         })
         .fail(($xhr) => {
             $.failMessage('Gagal mendapatkan data.', 'Santri Santri')

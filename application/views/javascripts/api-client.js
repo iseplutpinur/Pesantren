@@ -411,6 +411,36 @@ $(() => {
 					}
 				})
 			},
+
+			update(id_santri, tingkat_id, kelas_id, ruang_id, tahun_ajaran_id, nama, jenis_kelamin, alamat, status, tanggal_lahir, no_hp) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>santri/santri/update',
+					data:
+					{
+						id_santri: id_santri,
+						tingkat_id: tingkat_id,
+						kelas_id: kelas_id,
+						ruang_id: ruang_id,
+						tahun_ajaran_id: tahun_ajaran_id,
+						jenis_kelamin: jenis_kelamin,
+						alamat: alamat,
+						nama: nama,
+						status: status,
+						tanggal_lahir: tanggal_lahir,
+						no_hp: no_hp,
+					}
+				})
+			}, detail(id) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>santri/santri/getDataDetail',
+					data:
+					{
+						id: id
+					}
+				})
+			},
 		},
 		santriKelas: {
 			delete(id) {
