@@ -70,26 +70,6 @@ class HakAksesLevel extends Render_Controller
     }
 
 
-    // Insert data
-    public function insert()
-    {
-        $level                             = $this->input->post('level');
-        $menu                             = $this->input->post('menu');
-        $sub_menu                         = $this->input->post('sub_menu');
-
-        $exe                             = $this->hakAkses->insert($level, $menu, $sub_menu);
-
-        $this->output_json(
-            [
-                'id'             => $exe['id'],
-                'level'         => $exe['level'],
-                'menu'             => $exe['parent'],
-                'sub_menu'         => $exe['child'],
-            ]
-        );
-    }
-
-
     // Update data
     public function update()
     {
@@ -111,41 +91,45 @@ class HakAksesLevel extends Render_Controller
     }
 
 
-    // Delete data
-    public function delete()
-    {
-        $id                             = $this->input->post('id');
-
-        $exe                             = $this->hakAkses->delete($id);
-
-        $this->output_json(
-            [
-                'id'             => $id
-            ]
-        );
-    }
 
     public function hakakses($id)
     {
         $usr = $this->level->getDataDetail($id);
-        // Page Settings
-        $this->title                     = 'Pengaturan Hak Akses Level ' . $usr['lev_nama'];
-        $this->content                     = 'pengaturan-level-hakakses';
-        $this->navigation                 = ['Pengaturan', 'Level', 'Hak Akses'];
-        $this->plugins                     = ['datatables'];
+        if ($usr) {
+            // Page Settings
+            $this->title                     = 'Pengaturan Hak Akses Level ' . $usr['lev_nama'];
+            $this->content                     = 'pengaturan-level-hakakses';
+            $this->navigation                 = ['Pengaturan', 'Level', 'Hak Akses'];
+            $this->plugins                     = ['datatables'];
 
-        // Breadcrumb setting
-        $this->breadcrumb_1             = 'Pengaturan';
-        $this->breadcrumb_1_url         = '#';
-        $this->breadcrumb_2             = 'Level';
-        $this->breadcrumb_2_url         = base_url() . 'pengaturan/level';
-        $this->breadcrumb_3             = 'Hak Akses';
-        $this->breadcrumb_3_url         = '#';
+            // Breadcrumb setting
+            $this->breadcrumb_1             = 'Pengaturan';
+            $this->breadcrumb_1_url         = '#';
+            $this->breadcrumb_2             = 'Level';
+            $this->breadcrumb_2_url         = base_url() . 'pengaturan/level';
+            $this->breadcrumb_3             = 'Hak Akses';
+            $this->breadcrumb_3_url         = '#';
 
-        // // Send data to view
-        $this->data['records'] = $this->mod_hk->getDataDisplay($id);
+            // // Send data to view
+            $this->data['records'] = $this->mod_hk->getDataDisplay($id);
+            $this->data['id_level'] = $id;
 
-        $this->render();
+            $this->render();
+        } else {
+            $this->render();
+        }
+    }
+
+    public function insert()
+    {
+
+        $this->output_json($this->mod_hk->insert($this->input->post('level'), $this->input->post('menu')));
+    }
+
+    public function delete()
+    {
+
+        $this->output_json($this->mod_hk->delete($this->input->post('level'), $this->input->post('menu')));
     }
 }
 

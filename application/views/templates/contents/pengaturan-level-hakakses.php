@@ -59,16 +59,16 @@
 									<div class="col-sm-4">
 										<div class="pull-right">
 											<?php if ($record['menu']['akses']) : ?>
-												<input type="checkbox" class="form-check-input" id="menu-hak-akses-<?= $record['menu']['menu_id'] ?>" checked>
+												<input type="checkbox" class="form-check-input" data-level="<?= $id_level ?>" id="menu-hak-akses-<?= $record['menu']['menu_id'] ?>" checked>
 											<?php else : ?>
-												<input type="checkbox" class="form-check-input" id="menu-hak-akses-<?= $record['menu']['menu_id'] ?>">
+												<input type="checkbox" class="form-check-input" data-level="<?= $id_level ?>" id="menu-hak-akses-<?= $record['menu']['menu_id'] ?>">
 											<?php endif; ?>
 											<label class="form-check-label" for="menu-hak-akses-<?= $record['menu']['menu_id'] ?>">Hak Akses</label>
 										</div>
 									</div>
 								</div>
 
-								<table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+								<table id="tabel-hak-akses-<?= $record['menu']['menu_id'] ?>" class="table table-striped table-bordered table-hover" width="100%">
 									<thead>
 										<tr>
 											<th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Nama Sub Menu</th>
@@ -81,9 +81,9 @@
 												<td><?= $submenu['menu_nama'] ?></td>
 												<td>
 													<?php if ($submenu['akses']) : ?>
-														<input type="checkbox" class="form-check-input" id="menu-hak-akses-<?= $submenu['menu_id'] ?>" checked>
+														<input type="checkbox" class="form-check-input" data-level="<?= $id_level ?>" id="menu-hak-akses-<?= $submenu['menu_id'] ?>" checked>
 													<?php else : ?>
-														<input type="checkbox" class="form-check-input" id="menu-hak-akses-<?= $submenu['menu_id'] ?>">
+														<input type="checkbox" class="form-check-input" data-level="<?= $id_level ?>" id="menu-hak-akses-<?= $submenu['menu_id'] ?>">
 													<?php endif; ?>
 												</td>
 											</tr>
@@ -123,5 +123,9 @@
 
 	</section>
 	<!-- end widget grid -->
-
+	<!-- widget grid -->
 </div>
+
+<script>
+	const records = <?= json_encode($records) ?>;
+</script>

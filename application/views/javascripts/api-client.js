@@ -76,6 +76,28 @@ $(() => {
 					}
 				})
 			},
+			deleteHakAkses(level, menu) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>pengaturan/HakAksesLevel/delete',
+					data:
+					{
+						level: level,
+						menu: menu
+					}
+				})
+			},
+			insertHakAkses(level, menu) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>pengaturan/HakAksesLevel/insert',
+					data:
+					{
+						level: level,
+						menu: menu
+					}
+				})
+			}
 
 		},
 		pengaturanMenu:
@@ -131,70 +153,6 @@ $(() => {
 				return $.ajax({
 					method: 'post',
 					url: '<?= base_url() ?>pengaturan/menu/delete',
-					data:
-					{
-						id: id
-					}
-				})
-			},
-
-		},
-		pengaturanHakAkses:
-		{
-
-			subMenu(menu) {
-				return $.ajax({
-					method: 'post',
-					url: '<?= base_url() ?>pengaturan/hakAkses/subMenu',
-					data:
-					{
-						menu: menu
-					}
-				})
-			},
-
-			detail(id) {
-				return $.ajax({
-					method: 'post',
-					url: '<?= base_url() ?>pengaturan/hakAkses/getDataDetail',
-					data:
-					{
-						id: id
-					}
-				})
-			},
-
-			insert(level, menu, sub_menu) {
-				return $.ajax({
-					method: 'post',
-					url: '<?= base_url() ?>pengaturan/hakAkses/insert',
-					data:
-					{
-						level: level,
-						menu: menu,
-						sub_menu: sub_menu
-					}
-				})
-			},
-
-			update(id, level, menu, sub_menu) {
-				return $.ajax({
-					method: 'post',
-					url: '<?= base_url() ?>pengaturan/hakAkses/update',
-					data:
-					{
-						id: id,
-						level: level,
-						menu: menu,
-						sub_menu: sub_menu
-					}
-				})
-			},
-
-			delete(id) {
-				return $.ajax({
-					method: 'post',
-					url: '<?= base_url() ?>pengaturan/hakAkses/delete',
 					data:
 					{
 						id: id

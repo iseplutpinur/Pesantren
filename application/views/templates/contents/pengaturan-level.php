@@ -75,9 +75,9 @@
 											<td><?= $q['lev_status'] ?></td>
 											<td>
 												<div>
-													<button class="btn btn-warning btn-sm" onclick="Ubah(<?= $q['lev_id'] ?>)">
+													<a href="<?= base_url() ?>pengaturan/hakakses/<?= $q['lev_id'] ?>" class="btn btn-warning btn-sm">
 														<i class="fa fa-key"></i> Hak Akses
-													</button>
+													</a>
 													<button class="btn btn-primary btn-sm" onclick="Ubah(<?= $q['lev_id'] ?>)">
 														<i class="fa fa-edit"></i> Ubah
 													</button>
@@ -180,3 +180,6 @@
 		</form>
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<script>
+	const ___base_url = "<?= base_url() ?>";
+</script>

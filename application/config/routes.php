@@ -59,3 +59,6 @@ $route['stylesheets/(:any).css'] = 'loader/stylesheets/$1';
 // Santri -> Tahun Ajaran
 $route['santri/tahunajaran/(:any)'] = 'santri/TahunAjaran/$1';
 $route['santri/tahunajaran'] = 'santri/TahunAjaran';
+
+// Pengaturan -> level -> hak akses
+$route['pengaturan/hakakses/(:any)'] = 'pengaturan/HakAksesLevel/hakakses/$1';

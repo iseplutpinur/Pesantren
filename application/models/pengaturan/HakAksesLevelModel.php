@@ -15,4 +15,13 @@ class HakAksesLevelModel extends Render_Model
 
         return $result;
     }
+
+    public function insert($level, $menu)
+    {
+        return $this->db->insert('role_aplikasi', ['rola_menu_id' => $menu, 'rola_lev_id' => $level]);
+    }
+    public function delete($level, $menu)
+    {
+        return $this->db->delete('role_aplikasi', ['rola_menu_id' => $menu, 'rola_lev_id' => $level]);
+    }
 }
