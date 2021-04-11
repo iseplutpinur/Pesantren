@@ -18,79 +18,14 @@ class HakAksesLevel extends Render_Controller
 
     public function index()
     {
-        // Page Settings
-        $this->title                     = 'Pengaturan Hak Akses Level';
-        $this->content                     = 'pengaturan-hakAkses';
-        $this->navigation                 = ['Pengaturan', 'Level', 'Hak Akses'];
-        $this->plugins                     = ['datatables'];
-
-        // Breadcrumb setting
-        $this->breadcrumb_1             = 'Pengaturan';
-        $this->breadcrumb_1_url         = '#';
-        $this->breadcrumb_2             = 'Level';
-        $this->breadcrumb_2_url         = base_url() . 'pengaturan/level';
-        $this->breadcrumb_3             = 'Hak Akses';
-        $this->breadcrumb_3_url         = '#';
-
-        // Send data to view
-        $this->data['records']             = $this->hakAkses->getAllData();
-        $this->data['level']             = $this->hakAkses->getDataLevel();
-        $this->data['parent']             = $this->hakAkses->getDataParent();
-
+        // Page config:
+        $this->title = 'Error 404';
+        $this->content = 'err404';
+        $this->plugins = [];
+        $this->output->set_status_header('404');
+        // Commit render:
         $this->render();
     }
-
-
-    // Sub menu
-    public function subMenu()
-    {
-        $menu                             = $this->input->post('menu');
-
-        $exe                             = $this->hakAkses->getDataChild($menu);
-
-        $this->output_json($exe);
-    }
-
-
-    // Get data detail
-    public function getDataDetail()
-    {
-        $id                             = $this->input->post('id');
-
-        $exe                             = $this->hakAkses->getAllData($id);
-
-        $this->output_json(
-            [
-                'id'             => $exe[0]['rola_id'],
-                'level'         => $exe[0]['rola_lev_id'],
-                'menu'             => $exe[0]['parent_id'],
-                'sub_menu'         => $exe[0]['menu_id'],
-            ]
-        );
-    }
-
-
-    // Update data
-    public function update()
-    {
-        $id                             = $this->input->post('id');
-        $level                             = $this->input->post('level');
-        $menu                             = $this->input->post('menu');
-        $sub_menu                         = $this->input->post('sub_menu');
-
-        $exe                             = $this->hakAkses->update($id, $level, $menu, $sub_menu);
-
-        $this->output_json(
-            [
-                'id'             => $id,
-                'level'         => $exe['level'],
-                'menu'             => $exe['parent'],
-                'sub_menu'         => $exe['child'],
-            ]
-        );
-    }
-
-
 
     public function hakakses($id)
     {
@@ -116,6 +51,12 @@ class HakAksesLevel extends Render_Controller
 
             $this->render();
         } else {
+            // Page config:
+            $this->title = 'Error 404';
+            $this->content = 'err404';
+            $this->plugins = [];
+            $this->output->set_status_header('404');
+            // Commit render:
             $this->render();
         }
     }

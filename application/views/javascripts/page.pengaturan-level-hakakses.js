@@ -10,24 +10,22 @@ $(() => {
                     data.prop("checked", status);
                     data.prop("disabled", false);
 
+                }).fail(($xhr) => {
+                    $.failMessage('Gagal diubah.', 'Pengaturan Level Hak Akses')
+                    data.prop("checked", !status);
+                    data.prop("disabled", false);
                 })
-                    .fail(($xhr) => {
-                        $.failMessage('Gagal diubah.', 'Pengaturan Level Hak Akses')
-                        data.prop("checked", !status);
-                        data.prop("disabled", false);
-                    })
             } else {
                 window.apiClient.pengaturanLevel.deleteHakAkses(data.data('level'), Number(id_menu)).done((e) => {
                     $.doneMessage('Berhasil diubah.', 'Pengaturan Level Hak Akses')
                     data.prop("checked", status);
                     data.prop("disabled", false);
 
+                }).fail(($xhr) => {
+                    $.failMessage('Gagal diubah.', 'Pengaturan Level Hak Akses')
+                    data.prop("checked", !status);
+                    data.prop("disabled", false);
                 })
-                    .fail(($xhr) => {
-                        $.failMessage('Gagal diubah.', 'Pengaturan Level Hak Akses')
-                        data.prop("checked", !status);
-                        data.prop("disabled", false);
-                    })
             }
         }
 
