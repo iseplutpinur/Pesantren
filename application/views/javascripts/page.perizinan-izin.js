@@ -2,7 +2,7 @@ $(() => {
     // initialize responsive datatable
     $.initBasicTable('#dt_basic')
     const $table = $('#dt_basic').DataTable();
-    $table.columns(0)
+    $table.columns(4)
         .order('asc')
         .draw()
 
@@ -27,16 +27,15 @@ $(() => {
             data.keterangan,
             data.tanggal_izin,
             data.tanggal_selesai,
-            data.status,
+            data.tanggal_kembali,
+            `<div id="status-text-${data.id}">
+            <span class="text-success">izin</span>
+            </div>`,
             `
             <div id="btn-ubah-${data.id}">
-            <button class="btn btn-primary btn-sm" onclick="Ubah(${data.id})">
-                <i class="fa fa-edit"></i> Ubah
+            <button class="btn btn-primary btn-sm" onclick="Selesai(${data.id})">
+                <i class="fa fa-edit"></i> Selesai
             </button>
-            <button class="btn btn-danger btn-sm" onclick="Hapus(${data.id})">
-                <i class="fa fa-trash"></i> Hapus
-            </button>
-            </div>
             `
         ]
 
@@ -49,23 +48,31 @@ $(() => {
         let row = $table.row('[data-id=' + id + ']').index();
 
         $($table.row(row).node()).attr('data-id', id);
-        $table.cell(row, 0).data(data.nama);
-        let btn = $(`#btn-ubah-${data.id}`);
-        btn.html(`
-        <div id="btn-ubah-${data.id}">
-        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalUbah" data-id="${data.id}" data-nama="${data.nama}" onclick="Ubah(this)">
-            <i class="fa fa-edit"></i> Ubah
-        </button>
-        <button class="btn btn-danger btn-sm" onclick="Hapus(${data.id})">
-            <i class="fa fa-trash"></i> Hapus
-        </button>
-        </div>
-        `);
-    }
+        $table.cell(row, 4).data(data.tanggal_kembali);
 
-    // Delete Row
-    const deleteRow = (id) => {
-        $table.row('[data-id=' + id + ']').remove().draw()
+
+        $(`#btn-ubah-${data.id}`).html(`
+            <button class="btn btn-primary btn-sm"  disabled>
+            <i class="fa fa-edit"></i> Selesai
+            </button>
+        `);
+
+
+        // status
+        let color_status = "";
+        if (data.status == 'izin') color_status = "text-success";
+        else if (data.status == 'selesai') color_status = "text-primary";
+        else color_status = "text-danger";
+        let status = data.status;
+        if (data.hitung > 0) {
+            status = data.status + " " + data.hitung + " hari lebih awal";
+        } else if (data.hitung < 0) {
+            status = data.status + " " + Math.abs(Number(data.hitung)) + " hari";
+        }
+
+        $(`#status-text-${data.id}`).html(`
+            <td class="${color_status}">${status}</td>
+        `);
     }
 
     // Fungsi simpan tambah
@@ -111,40 +118,17 @@ $(() => {
         }
     })
 
-
-    // Fungsi Update
-    $('#form-ubah').submit((ev) => {
-        ev.preventDefault();
-
-        let nama = $("#nama-ubah").val();
-        let id = $("#id-ubah").val();
-
-        window.apiClient.santriRuang.update(id, nama)
-            .done((data) => {
-                $.doneMessage('Berhasil diubah.', 'Santri Ruang')
-                editRow(id, data)
-
-            })
-            .fail(($xhr) => {
-                $.failMessage('Gagal diubah. data mungkin sudah ada.', 'Santri Ruang')
-            }).
-            always(() => {
-                $('#modalUbah').modal('toggle')
-            })
-    })
-
-    // Fungsi Delete
+    // Fungsi Selesai
     $('#OkCheck').click(() => {
-
         let id = $("#idCheck").val()
-        window.apiClient.santriRuang.delete(id)
+        window.apiClient.perizinanIzin.selesai(id)
             .done((data) => {
-                $.doneMessage('Berhasil dihapus.', 'Santri Ruang')
-                deleteRow(id)
+                $.doneMessage('Berhasil diubah.', 'Perizinan Santri')
+                editRow(id, data);
 
             })
             .fail(($xhr) => {
-                $.failMessage('Gagal dihapus.', 'Santri Ruang')
+                $.failMessage('Gagal diubah.', 'Perizinan Santri')
             }).
             always(() => {
                 $('#ModalCheck').modal('toggle')
@@ -153,15 +137,9 @@ $(() => {
 })
 
 // Click Hapus
-const Hapus = (id) => {
+const Selesai = (id) => {
     $("#idCheck").val(id)
-    $("#LabelCheck").text('Hapus Ruang Santri')
-    $("#ContentCheck").text('Apakah anda yakin akan menghapus data ini?')
+    $("#LabelCheck").text('Ubah data izin')
+    $("#ContentCheck").text('Apakah anda yakin akan mengubah data ini?')
     $('#ModalCheck').modal('toggle')
-}
-
-// Click Ubah
-const Ubah = (data) => {
-    $("#id-ubah").val(data.dataset.id);
-    $("#nama-ubah").val(data.dataset.nama);
 }

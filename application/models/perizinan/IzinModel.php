@@ -5,7 +5,7 @@ class IzinModel extends Render_Model
 {
     public function getData($id = null)
     {
-        $this->db->select('izin.*, santri.nama');
+        $this->db->select('izin.*, (izin.tanggal_selesai - izin.tanggal_kembali) as hitung, santri.nama');
         $this->db->from('izin');
         $this->db->join('santri', 'izin.id_santri = santri.id_santri');
         if ($id) {
@@ -47,25 +47,15 @@ class IzinModel extends Render_Model
         return $exe;
     }
 
-    public function update($id_santri, $tingkat_id, $kelas_id, $ruang_id, $tahun_ajaran_id, $nama, $jenis_kelamin, $alamat, $status, $tanggal_lahir, $no_hp)
+    public function update($id)
     {
-        $id = $id_santri;
-        $data['tingkat_id'] = $tingkat_id;
-        $data['kelas_id'] = $kelas_id;
-        $data['kelas_id'] = $kelas_id;
-        $data['ruang_id'] = $ruang_id;
-        $data['tahun_ajaran_id'] = $tahun_ajaran_id;
-        $data['nama'] = $nama;
-        $data['jenis_kelamin'] = $jenis_kelamin;
-        $data['alamat'] = $alamat;
-        $data['status'] = $status;
-        $data['tanggal_lahir'] = $tanggal_lahir;
-        $data['no_hp'] = $no_hp;
+        $execute                     = $this->db->where('id', $id);
+        $execute                     = $this->db->update('izin', ['tanggal_kembali' => date("Y-m-d")]);
 
-        $execute                     = $this->db->where('id_santri', $id);
-        $execute                     = $this->db->update('santri', $data);
-        $exe['id']                     = $id;
+        $status = $this->getData($id)['hitung'] >= 0 ? "selesai" : "terlambat";
+        $execute                     = $this->db->where('id', $id);
+        $execute                     = $this->db->update('izin', ['status' => $status]);
 
-        return $exe;
+        return $this->getData($id);
     }
 }

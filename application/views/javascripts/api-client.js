@@ -540,7 +540,16 @@ $(() => {
 						keterangan: keterangan
 					}
 				})
-			},
+			}, selesai(id) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>perizinan/izin/selesai',
+					data:
+					{
+						id: id
+					}
+				})
+			}
 		}
 
 

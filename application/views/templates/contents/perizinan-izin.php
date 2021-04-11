@@ -65,26 +65,47 @@
                                         <th data-class="expand"><i class="fa fa-fw fa-info text-muted hidden-md hidden-sm hidden-xs"></i> Keterangan</th>
                                         <th data-class="expand"><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Tanggal Izin</th>
                                         <th data-class="expand"><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Tanggal Selesai</th>
+                                        <th data-class="expand"><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Tanggal kembali</th>
                                         <th data-class="expand"><i class="fa fa-fw fa-info text-muted hidden-md hidden-sm hidden-xs"></i> Status</th>
                                         <th><i class="fa fa-fw fa-align-justify text-muted hidden-md hidden-sm hidden-xs"></i>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($records as $q) : ?>
+                                    <?php foreach ($records as $q) :
+                                        if ($q['status'] == 'izin') $color_status = "text-success";
+                                        else if ($q['status'] == 'selesai') $color_status = "text-primary";
+                                        else $color_status = "text-danger";
+                                        $status = $q['status'];
+                                        if ($q['hitung'] > 0) {
+                                            $status = $q['status'] . " " . $q['hitung'] . " hari lebih awal";
+                                        } else if ($q['hitung'] < 0) {
+                                            $status = $q['status'] . " " . abs($q['hitung']) . " hari";
+                                        }
+
+
+                                    ?>
                                         <tr data-id="<?= $q['id'] ?>">
                                             <td><?= $q['nama'] ?></td>
                                             <td><?= $q['keterangan'] ?></td>
                                             <td><?= $q['tanggal_izin'] ?></td>
                                             <td><?= $q['tanggal_selesai'] ?></td>
-                                            <td><?= $q['status'] ?></td>
+                                            <td><?= $q['tanggal_kembali'] ?></td>
+                                            <td>
+                                                <div id="status-text-<?= $q['id'] ?>">
+                                                    <span class="<?= $color_status ?>"><?= $status ?></span>
+                                                </div>
+                                            </td>
                                             <td>
                                                 <div id="btn-ubah-<?= $q['id'] ?>">
-                                                    <button class="btn btn-primary btn-sm" onclick="Ubah(<?= $q['id'] ?>)">
-                                                        <i class="fa fa-edit"></i> Ubah
-                                                    </button>
-                                                    <button class="btn btn-danger btn-sm" onclick="Hapus(<?= $q['id'] ?>)">
-                                                        <i class="fa fa-trash"></i> Hapus
-                                                    </button>
+                                                    <?php if ($q['status'] != 'izin') : ?>
+                                                        <button class="btn btn-primary btn-sm" onclick="Selesai(<?= $q['id'] ?>)" disabled>
+                                                            <i class="fa fa-edit"></i> Selesai
+                                                        </button>
+                                                    <?php else : ?>
+                                                        <button class="btn btn-primary btn-sm" onclick="Selesai(<?= $q['id'] ?>)">
+                                                            <i class="fa fa-edit"></i> Selesai
+                                                        </button>
+                                                    <?php endif; ?>
                                                 </div>
                                             </td>
                                         </tr>
@@ -172,42 +193,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary" id="submit-tambah">
-                        Simpan
-                    </button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">
-                        Batal
-                    </button>
-                </div>
-            </div><!-- /.modal-content -->
-        </form>
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-
-<!-- Modal Tambah -->
-<div class="modal fade" id="modalUbah" tabindex="-1" role="dialog" aria-labelledby="modalUbahLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <form id="form-ubah">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalUbahLabel">Ubah Data Kelas</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="nama">Nama Kelas</label>
-                                <input type="text" id="id-ubah" name="id-ubah" style="display:none" />
-                                <input type="text" id="nama-ubah" class="form-control" name="nama-ubah" placeholder="Nama Kelas" required />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="submit">
                         Simpan
                     </button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">
