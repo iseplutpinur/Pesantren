@@ -62,3 +62,6 @@ $route['santri/tahunajaran'] = 'santri/TahunAjaran';
 
 // Pengaturan -> level -> hak akses
 $route['pengaturan/hakakses/(:any)'] = 'pengaturan/HakAksesLevel/hakakses/$1';
+
+// Perizinan
+$route['perizinan'] = 'perizinan/izin';

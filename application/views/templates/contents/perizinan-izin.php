@@ -61,18 +61,25 @@
                             <table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
                                 <thead>
                                     <tr>
-                                        <th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Nama</th>
+                                        <th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Nama Santri</th>
+                                        <th data-class="expand"><i class="fa fa-fw fa-info text-muted hidden-md hidden-sm hidden-xs"></i> Keterangan</th>
+                                        <th data-class="expand"><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Tanggal Izin</th>
+                                        <th data-class="expand"><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Tanggal Selesai</th>
+                                        <th data-class="expand"><i class="fa fa-fw fa-info text-muted hidden-md hidden-sm hidden-xs"></i> Status</th>
                                         <th><i class="fa fa-fw fa-align-justify text-muted hidden-md hidden-sm hidden-xs"></i>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $no = 1;
-                                    foreach ($Ruang as $q) : ?>
+                                    <?php foreach ($records as $q) : ?>
                                         <tr data-id="<?= $q['id'] ?>">
                                             <td><?= $q['nama'] ?></td>
+                                            <td><?= $q['keterangan'] ?></td>
+                                            <td><?= $q['tanggal_izin'] ?></td>
+                                            <td><?= $q['tanggal_selesai'] ?></td>
+                                            <td><?= $q['status'] ?></td>
                                             <td>
                                                 <div id="btn-ubah-<?= $q['id'] ?>">
-                                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalUbah" data-id="<?= $q['id'] ?>" data-nama="<?= $q['nama'] ?>" onclick="Ubah(this)">
+                                                    <button class="btn btn-primary btn-sm" onclick="Ubah(<?= $q['id'] ?>)">
                                                         <i class="fa fa-edit"></i> Ubah
                                                     </button>
                                                     <button class="btn btn-danger btn-sm" onclick="Hapus(<?= $q['id'] ?>)">
@@ -81,8 +88,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                    <?php $no++;
-                                    endforeach; ?>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -126,7 +132,7 @@
         <form id="form-tambah">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Ruang</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Perizinan</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -135,14 +141,37 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="nama">Nama Ruang</label>
-                                <input type="text" id="nama" class="form-control" name="nama" placeholder="Nama Ruang" required />
+                                <label for="nama">Nama Santri</label>
+                                <select id="nama" multiple style="width:100%" class="select2" data-select-search="true">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="tanggal_izin">Tanggal Izin</label>
+                                <input type="date" id="tanggal_izin" class="form-control" name="tanggal_izin" placeholder="Tanggal Izin" required disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="tanggal_selesai">Tanggal Selesai</label>
+                                <input type="date" id="tanggal_selesai" class="form-control" name="tanggal_selesai" placeholder="Tanggal Selesai" required disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="keterangan">Keterangan Izin</label>
+                                <input type="text" id="keterangan" class="form-control" name="keterangan" placeholder="Keterangan Izin" required disabled />
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="submit">
+                    <button type="submit" class="btn btn-primary" id="submit-tambah">
                         Simpan
                     </button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">
@@ -161,7 +190,7 @@
         <form id="form-ubah">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalUbahLabel">Ubah Data Ruang</h5>
+                    <h5 class="modal-title" id="modalUbahLabel">Ubah Data Kelas</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -170,15 +199,15 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="nama">Nama Ruang</label>
+                                <label for="nama">Nama Kelas</label>
                                 <input type="text" id="id-ubah" name="id-ubah" style="display:none" />
-                                <input type="text" id="nama-ubah" class="form-control" name="nama-ubah" placeholder="Nama Ruang" required />
+                                <input type="text" id="nama-ubah" class="form-control" name="nama-ubah" placeholder="Nama Kelas" required />
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="submit-ubah">
+                    <button type="submit" class="btn btn-primary" id="submit">
                         Simpan
                     </button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">

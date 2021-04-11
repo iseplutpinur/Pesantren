@@ -19,9 +19,9 @@
 	<!-- end row -->
 
 	<!--
-		The ID "widget-grid" will start to initialize all widgets below 
-		You do not need to use widgets if you dont want to. Simply remove 
-		the <section></section> and you can use wells or panels instead 
+		The ID "widget-grid" will start to initialize all widgets below
+		You do not need to use widgets if you dont want to. Simply remove
+		the <section></section> and you can use wells or panels instead
 		-->
 
 	<!-- widget grid -->
@@ -142,7 +142,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label for="tanggal">Level</label>
+								<label for="level">Level</label>
 								<select class="form-control" name="level" id="level">
 									<option value="">--Pilih Level--</option>
 									<?php foreach ($level as $lev) : ?>
@@ -155,7 +155,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label for="tanggal">Nama</label>
+								<label for="nama">Nama</label>
 								<input type="text" id="nama" class="form-control" name="nama" placeholder="Nama" required />
 							</div>
 						</div>
@@ -163,7 +163,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label for="tanggal">Telepon</label>
+								<label for="phone">Telepon</label>
 								<input type="number" id="phone" class="form-control" name="phone" placeholder="Telepon" required />
 							</div>
 						</div>
@@ -171,7 +171,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label for="tanggal">Username</label>
+								<label for="username">Username</label>
 								<input type="text" id="username" class="form-control" name="username" placeholder="Username" required />
 							</div>
 						</div>
@@ -179,13 +179,13 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="tanggal">Password</label>
+								<label for="password">Password</label>
 								<input type="password" id="password" class="form-control" name="password" placeholder="Password" required />
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="tanggal">Ulangi Password</label>
+								<label for="upassword">Ulangi Password</label>
 								<input type="password" id="upassword" class="form-control" name="upassword" placeholder="Ulangi Password" required />
 							</div>
 						</div>
@@ -194,7 +194,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label for="nama"> Status</label>
+								<label for="status"> Status</label>
 								<select class="form-control" required id="status">
 									<option value="">--Pilih Status--</option>
 									<option value="Aktif">Aktif</option>

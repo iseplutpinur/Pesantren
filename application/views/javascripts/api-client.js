@@ -527,7 +527,23 @@ $(() => {
 					}
 				})
 			},
-		},
+		}, perizinanIzin: {
+			insert(id_santri, tanggal_izin, tanggal_selesai, keterangan) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>perizinan/izin/insert',
+					data:
+					{
+						id_santri: id_santri,
+						tanggal_izin: tanggal_izin,
+						tanggal_selesai: tanggal_selesai,
+						keterangan: keterangan
+					}
+				})
+			},
+		}
+
+
 	}
 
 	initAjax()
